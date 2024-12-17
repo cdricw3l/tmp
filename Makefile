@@ -21,9 +21,15 @@ fclean: clean
 
 re: clean fclean ${NAME}
 
-gdev:
+gdev: copy
 	git add .
 	git commit -m ${NAME}
 	git push
 
-.PHONY: re all clean fclean so_long
+copy:
+	cd .. && cd 42-katas && rm -rf ${NAME}
+	cd ..  
+	cp -rf ${NAME}  ../42-katas/
+	cd 	.. && cd  42-katas &&  git add . && git commit -m ${NAME} && git push 
+
+.PHONY: re all clean fclean so_long copy
