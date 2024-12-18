@@ -6,34 +6,11 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 08:43:25 by cbouhadr         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 14:40:59 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/17 21:26:52 by cb               ###   ########.fr       */
+/*   Updated: 2024/12/18 10:26:58 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-typedef struct s_data
-{
-    void    *img;
-    char    *addr;
-    int     bit_per_pixel;
-    int     line_length;
-    int     endian;
-
-} t_data;
-
 
 void ft_put_px(t_data *data, int x, int y, int color)
 {
@@ -89,18 +66,52 @@ int ft_init_map(void *mlx, void *new_w, t_data *img)
     return(1);
 }
 
-// int ft_check_params(ch)
-// {
+char **ft_parse_params(char *file, int hauteur, int largeur)
+{
+    int i;
+    int j;
+    int fd;
+    char **map;
+    char *tmp;
     
-// }
+    i = 0;
+    map = malloc(sizeof(char *) * hauteur);
+    if(!map)
+        return(NULL);
+    fd = open(file, O_RDONLY);
+    if (fd == -1)
+    {
+        perror(ft_error_return(2));
+        return (NULL);
+    }
+    while (i < hauteur)
+    {
+        j = 0;
+        map[i] = malloc(sizeof(char *) * largeur);
+        if (!map[i])
+            return(NULL);
+        tmp = get_next_line(fd);
+        while (j < largeur)
+        {
+            if(tmp)
+            {
+                map[i][j] = tmp[j];
+                j++;  
+            }
+        }
+        i++;
+    }
+    return(map);
+}
 
 
 int	main(int argc, char *argv[])
 {
     //void	*mlx = NULL;
     //void    *new_w = NULL;
-    //t_data  img;
-
+    t_data  img;
+    char **map;
+    
     if(argc != 2)
     {
         perror(ft_error_return(1));
@@ -114,23 +125,10 @@ int	main(int argc, char *argv[])
             perror(ft_error_return(2));
             return (1);
         }
-        char *str = get_next_line(fd);
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        
-        printf("%s\n", str);
-        str = get_next_line(fd);
-        printf("%p\n", str);
+        ft_get_dimentions(fd, &img);
+        map = ft_parse_params(argv[1], img.dimention.hauteur, img.dimention.largeur);
+        ft_print_map(map, img.dimention.hauteur, img.dimention.largeur);
     }
-        printf("voici ladresse de la map %s\n", argv[1]);
     //ft_init_map(mlx, new_w, &img);
     //mlx_loop(mlx);
 
