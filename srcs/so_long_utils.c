@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:41:56 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 11:28:20 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:23:46 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 void  ft_get_dimentions(int fd, t_data  *img)
 {
-    char *str = "";
+    char *str;
     int largeur;
     int hauteur;
-    //int i = 0;
-    //char **map;
     
     largeur = 0;
     hauteur = 0;
+    str  = "";
     while (str != NULL)
     {
         str = get_next_line(fd);
         if (str != NULL)
         {
             if (largeur == 0)
-                largeur = ft_strlen(str);
+                largeur = ft_strlen(str) - 1;
             hauteur++;
         }
     }
     img->dimention.hauteur = hauteur;
-    img->dimention.largeur = largeur;    
+    img->dimention.largeur = largeur;
 }
 
 void    ft_print_map(char **map, int hauteur, int largeur)

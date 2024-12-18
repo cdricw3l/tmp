@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:13:33 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 11:44:49 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:26:06 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,15 @@ int ft_is_close(char **map, int  hauteur, int largeur)
             if(i == 0 || i == hauteur - 1)
             {
                 if(map[i][j] != 49)
-                {
-                    printf("voi le  ca qui posent probleme :%d vooici i : %d, voici j : %d\n", map[i][j], i, j);
                     return (1);
-                }
 
             }
             else
-            {
                 if(j == 0 || j == largeur - 1)
                 {
                     if(map[i][j] != 49)
-                    {
-                         printf("voi le  ca qui posent probleme 2:%d\n", map[i][j]);
                         return (1);                    
-                    }
                 }
-            }
             j++;
         }
         i++;
@@ -59,15 +51,30 @@ int ft_check_params(char **map, int  hauteur, int largeur)
     return (0);
 }
 
-int main(int argc, char **argv)
-{
-    char **map;
-    (void)argc;
-    map = ft_parse_params(argv[1], 6, 35);
 
-    ft_print_map(map, 6, 35);
 
-    int k = ft_is_close(map, 6, 35);
-    printf("%d\n", k);
-    return(0);
-}
+// int main(int argc, char *argv[])
+// {
+//     char **map;
+//     t_data img;
+
+//     int fd = open(argv[1],O_RDONLY);
+//     if(argc != 2)
+//     {
+//         perror(ft_error_return(1));
+//         return (1);
+//     }
+//     if (fd == -1)
+//     {
+//         perror(ft_error_return(2));
+//         return (1);
+//     }
+
+//     ft_get_dimentions(fd, &img);
+//     printf("voicci les dimention: h: %d et l: %d\n", img.dimention.hauteur, img.dimention.largeur);
+//     map = ft_parse_params(argv[1], img.dimention.hauteur, img.dimention.largeur);
+//     //ft_print_map(map, img.dimention.hauteur, img.dimention.largeur);
+//     int k = ft_is_close(map, img.dimention.hauteur, img.dimention.largeur);
+//     printf("%d\n", k);
+//     return(0);
+// }

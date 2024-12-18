@@ -2,7 +2,7 @@ CC = gcc
 GFLAGS= -Werror -Wall -Wextra
 SRCS = srcs/main.c srcs/so_long_utils.c srcs/check_params.c gnl/get_next_line_utils.c gnl/get_next_line.c
 NAME= so_long
-LIB= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft -Llibft -Lprintf -lftprintf
+LIB= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft -Lprintf -lftprintf
 
 OBJS = $(SRCS:.c =.o)
 
@@ -22,7 +22,7 @@ fclean: clean
 
 re: clean fclean ${NAME}
 
-gdev: copy
+gdev:
 	git add .
 	git commit -m ${NAME}
 	git push
