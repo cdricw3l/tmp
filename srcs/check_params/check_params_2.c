@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:39:44 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 12:35:38 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:38:10 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	are_start(char **map, int hauteur, int largeur)
 	return (1);
 }
 
-int	ft_is_close(char **map, int hauteur, int largeur)
+int	is_close(char **map, int hauteur, int largeur)
 {
 	int	i;
 	int	j;
