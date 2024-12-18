@@ -1,6 +1,6 @@
 CC = gcc 
 GFLAGS= -Werror -Wall -Wextra
-SRCS = srcs/main.c 
+SRCS = srcs/main.c gnl/get_next_line_utils.c gnl/get_next_line.c
 NAME= so_long
 
 OBJS = $(SRCS:.c =.o)
@@ -32,4 +32,10 @@ copy:
 	cp -rf ${NAME}  ../42-katas/
 	cd 	.. && cd  42-katas &&  git add . && git commit -m ${NAME} && git push 
 
-.PHONY: re all clean fclean so_long copy
+
+libft:
+	rm -rf libft
+	cp -rf ../42-katas/libft .
+
+
+.PHONY: re all clean fclean so_long copy libft
