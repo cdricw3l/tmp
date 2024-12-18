@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 10:25:30 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:49:29 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct s_data
 
 } t_data;
 
-void  ft_get_dimentions(int fd, t_data  *img);
+void    ft_get_dimentions(int fd, t_data  *img);
 void    ft_print_map(char **map, int hauteur, int largeur);
+int     ft_check_params(char **map, int  hauteur, int largeur);
 
 #endif

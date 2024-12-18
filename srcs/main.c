@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 10:26:58 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 10:52:18 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int	main(int argc, char *argv[])
         }
         ft_get_dimentions(fd, &img);
         map = ft_parse_params(argv[1], img.dimention.hauteur, img.dimention.largeur);
+        printf("voici le resultat du check %d\n", ft_check_params(map, img.dimention.hauteur, img.dimention.largeur ));
         ft_print_map(map, img.dimention.hauteur, img.dimention.largeur);
     }
     //ft_init_map(mlx, new_w, &img);
