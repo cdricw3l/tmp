@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 10:49:29 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:28:35 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ typedef struct s_data
 
 void    ft_get_dimentions(int fd, t_data  *img);
 void    ft_print_map(char **map, int hauteur, int largeur);
+
+
+// check part
 int     ft_check_params(char **map, int  hauteur, int largeur);
+int     is_rectangle(int hauteur, int largeur);
+int     are_exit(char **map, int  hauteur, int largeur);
+int     are_item(char **map, int  hauteur, int largeur);
+int     are_start(char **map, int  hauteur, int largeur);
+char    **ft_parse_params(char *file, int hauteur, int largeur);
+char    *ft_error_return(int error);
 
 #endif

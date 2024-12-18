@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 10:52:18 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:28:12 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,7 @@ int ft_colors(int larg, int lo)
     return(colors);
 }
 
-char *ft_error_return(int error)
-{
-    if (error == 1)
-        return("Aucune map passée en paramètre");
-    if (error == 2)
-        return("Map introuvable");
-    return (NULL);
-}
+
 
 int ft_init_map(void *mlx, void *new_w, t_data *img)
 {
@@ -64,44 +57,6 @@ int ft_init_map(void *mlx, void *new_w, t_data *img)
     
     mlx_put_image_to_window(mlx, new_w, (*img).img, 0, 0);
     return(1);
-}
-
-char **ft_parse_params(char *file, int hauteur, int largeur)
-{
-    int i;
-    int j;
-    int fd;
-    char **map;
-    char *tmp;
-    
-    i = 0;
-    map = malloc(sizeof(char *) * hauteur);
-    if(!map)
-        return(NULL);
-    fd = open(file, O_RDONLY);
-    if (fd == -1)
-    {
-        perror(ft_error_return(2));
-        return (NULL);
-    }
-    while (i < hauteur)
-    {
-        j = 0;
-        map[i] = malloc(sizeof(char *) * largeur);
-        if (!map[i])
-            return(NULL);
-        tmp = get_next_line(fd);
-        while (j < largeur)
-        {
-            if(tmp)
-            {
-                map[i][j] = tmp[j];
-                j++;  
-            }
-        }
-        i++;
-    }
-    return(map);
 }
 
 

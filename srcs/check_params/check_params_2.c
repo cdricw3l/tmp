@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_params.c                                     :+:      :+:    :+:   */
+/*   check_params_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:39:44 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 11:01:02 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:26:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 int is_rectangle(int hauteur, int largeur)
 {
@@ -79,22 +79,4 @@ int are_start(char **map, int  hauteur, int largeur)
     return (1);
 }
 
-
-
-int ft_check_params(char **map, int  hauteur, int largeur)
-{
-    if(is_rectangle(hauteur, largeur) || are_exit(map, hauteur, largeur))
-        return (1);
-    if(are_item(map, hauteur, largeur) || are_start(map, hauteur, largeur))
-        return (1);
-    return (0);
-}
-
-// int main(){
-
-//     char *str[3] = {"a", "b", "c"};
-
-//     int i = are_start(str, 1, 3);
-//     printf("%d\n", i);
-// }
 
