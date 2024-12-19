@@ -4,7 +4,7 @@ GFLAGS= -Werror -Wall -Wextra
 NAME= so_long
 NAME_TEST= so_long_test
 
-SRCS = srcs/main.c srcs/so_long_utils.c srcs/check_params/check_params_1.c gnl/get_next_line_utils.c gnl/get_next_line.c
+SRCS = srcs/main.c srcs/so_long_utils.c srcs/check_params/check_params_1.c srcs/hook/manage_hook.c gnl/get_next_line_utils.c gnl/get_next_line.c
 SRCS_TEST = srcs/so_long_utils.c srcs/check_params/check_params_1.c  gnl/get_next_line_utils.c gnl/get_next_line.c test_unit/test_unit_check_params/*
 LIB= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft -Lprintf -lftprintf
 

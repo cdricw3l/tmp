@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/19 11:49:46 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:05:35 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int check_and_init(char *path, char **map, t_data *data)
         return (1);
     }
     ft_get_dimentions(fd, data);
-    printf("Initialissation de la map ok . Hauteur de map : %d, largeur de map : %d  \n", data->dimention.hauteur, data->dimention.largeur);
-    
     map = ft_parse_params(path, data->dimention.hauteur, data->dimention.largeur);
     check = ft_check_params(map, arr_check ,data->dimention.hauteur, data->dimention.largeur);
     if(check)
@@ -65,16 +63,25 @@ int check_and_init(char *path, char **map, t_data *data)
     return(check);
 }
 
+
 void    start_game(t_data *data)
 {
-    void    *mlx;
-    void    *new_window;
-
-    mlx = NULL;
-    new_window = NULL;
-    printf("debut du jeu \n");
-    ft_init_map(&mlx, &new_window, data);
-    mlx_loop(mlx);
+    data->mlx = NULL;
+    data->window = NULL;
+    data->mouse_position.x = 0;
+    data->mouse_position.y = 0;
+    
+    ft_init_map(&data->mlx, &data->window, data);
+    if(!data->window|| !data->mlx)
+    {
+        perror(ft_error_return(4));
+        return ;
+    }
+    mlx_key_hook(data->window, ft_manage_keyboard, data);
+    printf("adresse 1: %p et adresse 2: %p\n", &data->mlx, &data->window);
+    mlx_hook(data->window, 17, 0 ,ft_close_windows, &data);
+    //mlx_mouse_hook(data->window,  ft_manage_mouse, data);
+    mlx_loop(data->mlx);
 }
 
 int	main(int argc, char *argv[])
@@ -101,6 +108,3 @@ int	main(int argc, char *argv[])
     }
     return(0);
 }
-
-
-//valgrind --leak-check=yes myprog arg1 arg2
