@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 13:49:42 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:36:39 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,8 @@ void    ft_print_map(char **map, int hauteur, int largeur);
 
 
 // check map
-int     ft_check_params(char **map, int  hauteur, int largeur);
-int     is_rectangle(int hauteur, int largeur);
-int     are_exit(char **map, int  hauteur, int largeur);
-int     are_item(char **map, int  hauteur, int largeur);
-int     are_start(char **map, int  hauteur, int largeur);
-int     is_close(char **map, int  hauteur, int largeur);
-int		is_empty_or_wrong(char **map, int hauteur, int largeur);
+int		ft_check_params(char **map, int check_arr[5], int hauteur, int largeur);;
+int		is_close_and_rectangle(char **map, int hauteur, int largeur);
 char    **ft_parse_params(char *file, int hauteur, int largeur);
 char    *ft_error_return(int error);
 
