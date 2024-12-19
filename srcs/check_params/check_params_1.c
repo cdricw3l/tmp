@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:13:33 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/19 09:42:19 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:49:36 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_check_params(char **map, int check_arr[5], int hauteur, int largeur)
 
 	i = 0;
 	set = "01CEP";
-	if(!map || (hauteur == 0 && largeur == 0))
+	if(!map || (hauteur == 0 || largeur == 0))
 		return(1);
 	while (i < hauteur)
 	{
