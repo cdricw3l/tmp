@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:41:56 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/18 12:23:46 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:49:17 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,20 @@ char *ft_error_return(int error)
         return("Aucune map passée en paramètre");
     if (error == 2)
         return("Map introuvable");
+    if (error == 3)
+        return("Map icomplete");
     return (NULL);
+}
+int ft_colors(int larg, int lo)
+{
+    int colors;
+
+    colors = 0;
+    if(larg >= 640 && larg <= 1280 )
+        colors = 0x009900CC;
+    if(larg % 3 == 0 && lo % 2 == 0)
+        colors = 0x00FF33CC;
+    else if(larg % 3  != 0 && 2 != 0)
+        colors = 0x0033CCFF;
+    return(colors);
 }

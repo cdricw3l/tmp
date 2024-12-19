@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/19 09:36:39 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:50:14 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int		ft_check_params(char **map, int check_arr[5], int hauteur, int largeur);;
 int		is_close_and_rectangle(char **map, int hauteur, int largeur);
 char    **ft_parse_params(char *file, int hauteur, int largeur);
 char    *ft_error_return(int error);
+int		ft_colors(int larg, int lo);
 
 #endif

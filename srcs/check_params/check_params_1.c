@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:13:33 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/19 09:49:36 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:27:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,16 @@ int	ft_check_params(char **map, int check_arr[5], int hauteur, int largeur)
 		i++;
 	}
 	if(is_close_and_rectangle(map, hauteur, largeur))
+	{
+		printf("la map n'est pas rectanglle\n");
 		return (1);
+	}
 	if(ft_count_params(check_arr) != 5)
+	{
+		printf("il manque des items\n");
 		return(1);
+	}
+	printf("voici le resultat su compte %d\n", ft_count_params(check_arr));
 	return (0);
 }
 // int main()
