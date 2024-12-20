@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:04:24 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:48:03 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 	int					bit_per_pixel;
 	int					line_length;
 	int					endian;
+	char				**map;
 	int					check_arr[5];
 	t_dimention			dimention;
 	t_dimention			begin;

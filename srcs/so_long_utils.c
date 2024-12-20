@@ -6,13 +6,13 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:41:56 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:29:44 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:59:39 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void  ft_get_dimentions(int fd, t_data  *map)
+void  ft_get_dimentions(int fd, t_data  *data)
 {
     char *str;
     int largeur;
@@ -31,8 +31,8 @@ void  ft_get_dimentions(int fd, t_data  *map)
             hauteur++;
         }
     }
-    map->dimention.hauteur = hauteur;
-    map->dimention.largeur = largeur;
+    data->dimention.hauteur = hauteur;
+    data->dimention.largeur = largeur;
 }
 
 void    ft_print_map(char **map, int hauteur, int largeur)
@@ -41,12 +41,12 @@ void    ft_print_map(char **map, int hauteur, int largeur)
     int j;
 
     i = 0;
-    printf("voici les dimentionde la map: hauteur: %d, largeur %d\n", hauteur,largeur);
+    
 
-    while (i < hauteur - 1)
+    while (i < hauteur)
     {
         j = 0;
-        while(j < largeur -1)
+        while(j < largeur)
         {
             printf("%c", map[i][j]);
             j++;

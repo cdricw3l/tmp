@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:29:23 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 11:00:01 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int ft_init_map(void **mlx, void **new_w, t_data *img)
 }
 
 
-int check_and_init(char *path, char **map, t_data *data)
+int check_and_init(char *path, t_data *data)
 {
     int fd = open(path,O_RDONLY);
     int check;
@@ -55,9 +55,8 @@ int check_and_init(char *path, char **map, t_data *data)
         return (1);
     }
     ft_get_dimentions(fd, data);
-    map = ft_parse_params(path, data);
-   
-    check = ft_check_params(map, data);
+    data->map = ft_parse_params(path, data);
+    check = ft_check_params(data->map, data);
     if(check)
         return(1);
     return(check);
@@ -88,7 +87,6 @@ int	main(int argc, char *argv[])
 {
     
     t_data  data;
-    char    **map;
     
     if(argc != 2)
     {
@@ -97,17 +95,17 @@ int	main(int argc, char *argv[])
     }
     else
     {
-        map = NULL;
-        if(check_and_init(argv[1],map, &data))
+        data.map = NULL;
+        if(check_and_init(argv[1], &data))
         {
             perror(ft_error_return(3));
             return(1);
         }
         else
         {
-
-            ft_print_map(map, data.dimention.hauteur, data.dimention.largeur);
-            //ft_flood_fill(map, data.dimention, data.begin);
+            printf("data begin col %d,, begin row %d\n", data.begin.hauteur, data.begin.largeur);
+            ft_flood_fill(data.map, data.dimention, data.begin);
+            ft_print_map(data.map, data.dimention.hauteur, data.dimention.largeur);
             start_game(&data);
         }
     }

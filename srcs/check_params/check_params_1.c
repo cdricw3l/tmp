@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:13:33 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:05:55 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:58:52 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_close_and_rectangle(char **map, int hauteur, int largeur)
 	return (0);
 }
 
-void	check_param(char c, t_data *data)
+void	check_param(char c, t_data *data, int row, int col)
 {
 	if (c == '0')
 		data->check_arr[0] = 1;
@@ -53,6 +53,8 @@ void	check_param(char c, t_data *data)
 		data->check_arr[3] = 1;
 	if (c == 'P')
 	{
+		data->begin.hauteur = row;
+		data->begin.largeur = col;
 		data->check_arr[4] = 1;
 	}
 }
@@ -85,7 +87,10 @@ int	ft_check_params(char **map, t_data *data)
 		while (j < data->dimention.largeur)
 		{
 			if (ft_isset(map[i][j], set))
-				check_param(map[i][j++], data);
+			{
+				check_param(map[i][j], data, i, j);
+				j++;
+			}
 			else
 				return(1);
 		}

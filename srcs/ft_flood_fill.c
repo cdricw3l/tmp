@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 08:47:03 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:07:08 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:54:55 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void ft_flood_fill(char **tab, t_dimention size, t_dimention begin)
 {
     int target;
 
+	printf("voici les dimentionde la map: hauteur: %d, largeur %d\n", size.hauteur,size.largeur);
     target = tab[begin.hauteur][begin.largeur];
 	fill_arr(tab, target, size, begin.largeur, begin.hauteur);
 	
