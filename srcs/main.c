@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/19 17:05:35 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:29:23 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int check_and_init(char *path, char **map, t_data *data)
 {
     int fd = open(path,O_RDONLY);
     int check;
-    int arr_check[5];
     
     if (fd == -1)
     {
@@ -56,8 +55,9 @@ int check_and_init(char *path, char **map, t_data *data)
         return (1);
     }
     ft_get_dimentions(fd, data);
-    map = ft_parse_params(path, data->dimention.hauteur, data->dimention.largeur);
-    check = ft_check_params(map, arr_check ,data->dimention.hauteur, data->dimention.largeur);
+    map = ft_parse_params(path, data);
+   
+    check = ft_check_params(map, data);
     if(check)
         return(1);
     return(check);
@@ -104,7 +104,12 @@ int	main(int argc, char *argv[])
             return(1);
         }
         else
+        {
+
+            ft_print_map(map, data.dimention.hauteur, data.dimention.largeur);
+            //ft_flood_fill(map, data.dimention, data.begin);
             start_game(&data);
+        }
     }
     return(0);
 }
