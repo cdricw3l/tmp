@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:41:56 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:59:39 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:25:40 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ char **ft_parse_params(char *file, t_data *data)
         {
             if(tmp)
             {
+                if(tmp[j] == 'C')
+                    data->count_item++;
                 map[i][j] = tmp[j];
                 j++;  
             }

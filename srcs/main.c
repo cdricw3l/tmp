@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 11:00:23 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:14:58 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int check_and_init(char *path, t_data *data)
     }
     ft_get_dimentions(fd, data);
     data->map = ft_parse_params(path, data);
-    check = ft_check_params(data->map, data);
+    check = ft_check_params(data);
     if(check)
         return(1);
     return(check);
@@ -95,16 +95,18 @@ int	main(int argc, char *argv[])
     }
     else
     {
-        data.map = NULL;
-        if(check_and_init(argv[1], &data))
+        data.map_name = argv[1];
+        if(check_and_init(data.map_name, &data))
         {
             perror(ft_error_return(3));
             return(1);
         }
         else
         {
-            ft_flood_fill(data.map, data.dimention, data.begin);
-            ft_print_map(data.map, data.dimention.hauteur, data.dimention.largeur);
+            printf("voici le nombre d'ittemp sur la map %d\n", data.count_item);
+            //ft_flood_fill(data.map, data.dimention, data.begin);
+            ft_check_valide_way(data.map, data.dimention, data.begin);
+            ft_display_data_info(&data);
             start_game(&data);
         }
     }

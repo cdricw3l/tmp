@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:13:33 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:58:52 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:25:16 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_count_params(int arr[5])
 	return(count);
 }
 
-int	ft_check_params(char **map, t_data *data)
+int	ft_check_params(t_data *data)
 {
 	int		i;
 	int		j;
@@ -79,16 +79,16 @@ int	ft_check_params(char **map, t_data *data)
 
 	i = 0;
 	set = "01CEP";
-	if(!map || (data->dimention.hauteur == 0 || data->dimention.largeur == 0))
+	if(!data->map || (data->dimention.hauteur == 0 || data->dimention.largeur == 0))
 		return(1);
 	while (i < data->dimention.hauteur)
 	{
 		j = 0;
 		while (j < data->dimention.largeur)
 		{
-			if (ft_isset(map[i][j], set))
+			if (ft_isset(data->map[i][j], set))
 			{
-				check_param(map[i][j], data, i, j);
+				check_param(data->map[i][j], data, i, j);
 				j++;
 			}
 			else
@@ -96,7 +96,7 @@ int	ft_check_params(char **map, t_data *data)
 		}
 		i++;
 	}
-	if(is_close_and_rectangle(map, data->dimention.hauteur, data->dimention.largeur))
+	if(is_close_and_rectangle(data->map, data->dimention.hauteur, data->dimention.largeur))
 		return (1);
 	if(ft_count_params(data->check_arr) != 5)
 		return(1);

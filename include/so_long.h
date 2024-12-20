@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 10:48:03 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:12:41 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ typedef struct s_mouse_position
 	
 } t_mouse_position;
 
-typedef  struct s_arr_point
-{
-	int col;
-	int row;
-
-} t_arr_point;
-
-
 typedef struct s_data
 {
 	void				*mlx;
@@ -54,10 +46,12 @@ typedef struct s_data
 	int					line_length;
 	int					endian;
 	char				**map;
+	char				*map_name;
 	int					check_arr[5];
 	t_dimention			dimention;
 	t_dimention			begin;
 	t_mouse_position	mouse_position;
+	int					count_item;
 
 } t_data;
 
@@ -66,7 +60,8 @@ void    ft_print_map(char **map, int hauteur, int largeur);
 
 
 // check map
-int		ft_check_params(char **map, t_data *data);
+int		ft_check_params(t_data *data);
+void    ft_display_data_info(t_data *data);
 int		is_close_and_rectangle(char **map, int hauteur, int largeur);
 char	**ft_parse_params(char *file, t_data *data);
 char    *ft_error_return(int error);
@@ -76,5 +71,5 @@ int		ft_manage_mouse(int keycode, t_data *data);
 int		ft_manage_keyboard(int keycode, t_data *data);
 int		ft_close_windows(int keycode, t_data **data);
 void	ft_flood_fill(char **tab, t_dimention size, t_dimention begin);
-
+void	ft_check_valide_way(char **tab, t_dimention size, t_dimention begin);
 #endif
