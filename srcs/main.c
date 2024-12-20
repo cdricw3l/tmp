@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 11:00:01 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 11:00:23 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	main(int argc, char *argv[])
         }
         else
         {
-            printf("data begin col %d,, begin row %d\n", data.begin.hauteur, data.begin.largeur);
             ft_flood_fill(data.map, data.dimention, data.begin);
             ft_print_map(data.map, data.dimention.hauteur, data.dimention.largeur);
             start_game(&data);
