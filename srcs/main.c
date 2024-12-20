@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 14:14:58 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:26:26 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void    start_game(t_data *data)
         perror(ft_error_return(4));
         return ;
     }
+ 
     mlx_key_hook(data->window, ft_manage_keyboard, data);
+    
     printf("adresse 1: %p et adresse 2: %p\n", &data->mlx, &data->window);
     mlx_hook(data->window, 17, 0 ,ft_close_windows, &data);
     //mlx_mouse_hook(data->window,  ft_manage_mouse, data);
@@ -98,14 +100,15 @@ int	main(int argc, char *argv[])
         data.map_name = argv[1];
         if(check_and_init(data.map_name, &data))
         {
-            perror(ft_error_return(3));
+            perror(ft_error_return(3)); 
             return(1);
         }
         else
         {
+            
             printf("voici le nombre d'ittemp sur la map %d\n", data.count_item);
             //ft_flood_fill(data.map, data.dimention, data.begin);
-            ft_check_valide_way(data.map, data.dimention, data.begin);
+            ft_check_valide_way(data.map, &data, data.begin);
             ft_display_data_info(&data);
             start_game(&data);
         }

@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 14:12:41 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:30:28 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ int		ft_manage_mouse(int keycode, t_data *data);
 int		ft_manage_keyboard(int keycode, t_data *data);
 int		ft_close_windows(int keycode, t_data **data);
 void	ft_flood_fill(char **tab, t_dimention size, t_dimention begin);
-void	ft_check_valide_way(char **tab, t_dimention size, t_dimention begin);
+void	ft_check_valide_way(char **tab, t_data *data, t_dimention begin);
 #endif
