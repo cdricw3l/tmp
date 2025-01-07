@@ -63,6 +63,8 @@ void	ft_put_wall(t_data *data)
 	int 	w;
 	int		h;
 
+	h = 0;
+	w = 0;
 	im = data->img_set[2]->img;
 	if(!im)
 	{
@@ -93,21 +95,21 @@ void    start_game(t_data **data)
     mlx_loop((*data)->mlx) ;
 }
 	
-int	main(int argc, char *argv[])
-{
-	t_data		*data;
+// int	main(int argc, char *argv[])
+// {
+// 	t_data		*data;
 
-	if (argc != 2)
-		return (error_layer(0));
-	else
-	{
-		data = initialisation_and_check(argv[1]);
-		if (!data)
-			return (1);
-		//ft_display_data_info(data); // a suuprimmer pour le rendu
-		start_game(&data);
-		//free_memory(data, 13);
+// 	if (argc != 2)
+// 		return (error_layer(0));
+// 	else
+// 	{
+// 		data = initialisation_and_check(argv[1]);
+// 		if (!data)
+// 			return (1);
+// 		//ft_display_data_info(data); // a suuprimmer pour le rendu
+// 		start_game(&data);
+// 		//free_memory(data, 13);
 		
-	}
-	return (0);
-}
+// 	}
+// 	return (0);
+// }

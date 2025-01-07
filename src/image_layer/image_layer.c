@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_layer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:33:22 by cb                #+#    #+#             */
-/*   Updated: 2025/01/06 22:04:28 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 15:53:37 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 t_img *get_image_in_set(t_data *data, char c, int state)
 {
-    t_img *img;
 
     printf("voicis %c\n", data->map[data->xy_data.begin.col][data->xy_data.begin.row]);
     
@@ -27,7 +26,6 @@ t_img *get_image_in_set(t_data *data, char c, int state)
     {
         printf("state : %d\n",data->char_state);
         printf("state : %d\n",state);
-        state == 1;
         if(state == 1)
             return(data->img_set[2]);
         else
@@ -45,12 +43,10 @@ t_img *get_image_in_set(t_data *data, char c, int state)
 int    run_image_layer(t_data **d)
 {
     t_img   *tpm;
-    int     *addr;
-    t_xy    map_xy;
+    //int     *addr;
     char    **map;
     t_data *data = *d;
 
-    map_xy = data->xy_data.map;
     map = data->map; 
     print_dimention(data->xy_data, 'b');
     print_map(data);
@@ -60,9 +56,8 @@ int    run_image_layer(t_data **d)
         return(ERR_FRAME);
     mlx_put_image_to_window(data->mlx,data->window,tpm->img,data->xy_data.begin.col * TILD_SIZE,data->xy_data.begin.row *  TILD_SIZE);
     //addr = (int *)mlx_get_data_addr(tpm ,&tpm->bit_per_pixel,&tpm->line_length,&tpm->endian);
-   
-    if(!addr)
-        return(ERR_FRAME);
+    // if(!addr)
+    //     return(ERR_FRAME);
     printf("start %d et %d \n", tpm->line_length, tpm->endian);
     
     return(0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_cleaner.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/06 03:57:59 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 15:47:49 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	clean_image_memory(t_data *data, int index)
     
 	i = 0;
     img = data->img_set;
-	while (i < IMG_SET_SIZE)
+	while (i < index)
 	{
         free(img[i]->img);
 		free(img[i]);

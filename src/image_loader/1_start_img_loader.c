@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_start_img_loader.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 23:56:59 by cb                #+#    #+#             */
-/*   Updated: 2025/01/06 21:57:58 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 15:50:47 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int	load_images(t_data *data)
 	free(path);
 	if (load)
 		return (error_layer(ERR_IMG_LOADING));
+	PRINT("END LOQDIN IMAGE");
 	return (0);
 }

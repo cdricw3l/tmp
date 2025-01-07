@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_image_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/06 15:33:57 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 14:28:38 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	image_loader(char **path, t_data *data)
 		img[i]->position = i;
 		i++;
 	}
+	PRINT("END CREAT IMAGE");
 	return (0);
 }

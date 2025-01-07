@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/06 22:04:14 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 15:25:57 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	exit_game(t_data *data);
 int		get_area(t_xy xy);
 t_xy	rescal(t_xy xy, int scal_factor);
 void    print_dimention(t_xy_data xy_arr, char c);
+void    ft_display_data_info(t_data *data);
 // void	ft_process_set(t_data *data,char c, int row, int col);
 // void    ft_print_map(t_data *data);
 // void	end_game_menu(t_data *data);
@@ -128,5 +129,7 @@ void    print_dimention(t_xy_data xy_arr, char c);
 // int		ft_colors(int larg, int lo);
 // int		ft_put_img(t_data *data);
 // void 	*char_layer(t_data *data, int keycode);
+
+#define PRINT(msg) printf("%s\n", msg)
 
 #endif

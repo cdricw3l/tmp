@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/06 22:11:56 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/07 15:49:41 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_xy	ft_s_dimention(void)
 	return (dimention);
 }
 
-int	ft_init_game_data_s(t_data *data, t_img **img_set, char *map_path)
+int	ft_init_game_data_s(t_data *data, char *map_path)
 {
 	
 	data->map_name = map_path;
@@ -47,7 +47,7 @@ t_img	**get_image_set(t_data *data)
 {
 	t_img	**image_set;
 	int		loading;
-	image_set = malloc(sizeof(t_img *) * IMG_SET_SIZE);
+	image_set = malloc(sizeof(t_img) * IMG_SET_SIZE);
 	if (!image_set)
 		return (NULL);
 	data->img_set = image_set;
@@ -62,7 +62,7 @@ t_data	*data_initialisation(char *map_path)
 	t_data	*data;
 	int		init_result;
 	
-	data = malloc(sizeof(t_data *) * 1);
+	data = malloc(sizeof(t_data) * 1);
 	if (!data)
 		return (NULL);
 	data->mlx = mlx_init();
@@ -72,7 +72,7 @@ t_data	*data_initialisation(char *map_path)
 	get_image_set(data);
 	if (!data->img_set)
 		return (free_memory(data, ERR_IMG_SET));
-	init_result = ft_init_game_data_s(data, data->img_set, map_path);
+	init_result = ft_init_game_data_s(data, map_path);
 	if (init_result)
 		return (free_memory(data, ERR_SCREEN));
 	return (data);
@@ -95,8 +95,41 @@ t_data	*initialisation_and_check(char *path)
 	{
 		return (free_memory(data, check_param));
 	}
-	if (check_valide_way(data) == 1)
-		return (free_memory(data, ERR_NO_WAY));
+	// if (check_valide_way(data) == 1)
+	// 	return (free_memory(data, ERR_NO_WAY));
 	printf("area %d et %d ", get_area(rescal(data->xy_data.map, TILD_SIZE)) , get_area(data->xy_data.screen_size));
 	return (data);
 }
+// void	fill_arr2(int target, t_data *data, int col, int row)
+// {
+// 	int		h;
+// 	int		w;
+// 	char	**tab;
+// 	char	c;
+
+// 	tab = data->map;
+// 	h = data->xy_data.map.row;
+// 	w = data->xy_data.map.col;
+// 	c = tab[row][col];
+// 	if (tab[row][col] == 'C')
+// 	{
+// 		data->check_item++;
+// 		tab[row][col] = 'X';
+// 	}
+// 	else if (tab[row][col] == '0'|| tab[row][col] == 'E' || tab[row][col] == '1')
+// 		tab[row][col] = ' ';
+// 	if(!ft_isset(c," 1X"))
+// 	{
+// 		if (col > 2 || row < h - 1 || row > 2 || col < w - 1)
+// 		{
+// 			//if(data->count_item > data->check_item)
+// 			//{
+// 				fill_arr2(target, data, col, row - 1);
+// 				fill_arr2(target, data, col, row + 1);
+// 				fill_arr2(target, data, col - 1, row);
+// 				fill_arr2(target, data, col + 1, row);
+// 			//}
+// 		}
+// 	}
+// 	print_map(data);
+// }
