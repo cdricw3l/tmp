@@ -3,73 +3,130 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2024/12/20 14:30:28 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/06 22:04:14 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef SO_LONG_H
 #define SO_LONG_H
 
-# include "../mlx_linux/mlx.h"
+# include "../lib/mlx_linux/mlx.h"
+# include "image_loader.h"
+# include "image_layer.h"
+# include "error_managment.h"
+# include "memory_managment.h"
+# include "hook_managment.h"
+# include "initialisation.h"
 # include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
-# include "../printf/ft_printf.h"
+# include "../src/gnl/get_next_line.h"
+# include "../lib/printf/ft_printf.h"
+
 
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 
 
-typedef struct s_dimention
+#define MLX_SYNC_IMAGE_WRITABLE		1
+#define MLX_SYNC_WIN_FLUSH_CMD		2
+#define MLX_SYNC_WIN_CMD_COMPLETED	3
+#define CHECK_LIST_SIZE 			7
+#define MAX_FD 						1048576
+#define TILD_SIZE 					128
+# define M_PI						3.14159265358979323846
+
+#define LEFT 1
+#define RIGHT 2
+#define FRONT 3
+#define	FACE  4
+
+#define	IMG_SET_SIZE 6
+
+typedef struct s_xy
 {
-	int hauteur;
-	int largeur;
+	int row;
+	int col;
 
-} t_dimention;
+} t_xy;
 
-typedef struct s_mouse_position
+typedef struct s_xy_data
 {
-	int x;
-	int y;
+	t_xy			map;
+	t_xy			begin;
+	t_xy			exit;
+	t_xy			screen_size;
+
+} t_xy_data;
+
+typedef struct s_img
+{
+	char 				*class;
+	int 				position;
+	void				*img;
+	int					*addr;
+	int					bit_per_pixel;
+	int					line_length;
+	int					endian;
+	int					width;
+	int					height;
 	
-} t_mouse_position;
+} t_img ;
 
 typedef struct s_data
 {
 	void				*mlx;
 	void				*window;
-	void				*img;
-	char				*addr;
-	int					bit_per_pixel;
-	int					line_length;
-	int					endian;
-	char				**map;
 	char				*map_name;
-	int					check_arr[5];
-	t_dimention			dimention;
-	t_dimention			begin;
-	t_mouse_position	mouse_position;
+	char				**map;
+	int					char_state;
 	int					count_item;
+	int					check_item;
+	int					count_begin;
+	int					count_exit;
+	int					count_mouvement;
+	t_xy_data			xy_data;
+	t_img				**img_set;
+	
+} t_data ;
 
-} t_data;
+typedef struct s_border
+{
+	t_point	size;
+	t_point	targ;
+	
+	int		border_size; //epaisseur
+	int		b_color;	// border color;
+	int		r_color;	// remplissage color;
+	
+} t_border;
 
-void    ft_get_dimentions(int fd, t_data  *img);
-void    ft_print_map(char **map, int hauteur, int largeur);
 
+t_data	*data_initialisation(char *map_path);
+void    print_map(t_data *data);
+void	exit_game(t_data *data);
 
-// check map
-int		ft_check_params(t_data *data);
-void    ft_display_data_info(t_data *data);
-int		is_close_and_rectangle(char **map, int hauteur, int largeur);
-char	**ft_parse_params(char *file, t_data *data);
-char    *ft_error_return(int error);
-int		ft_colors(int larg, int lo);
+int		get_area(t_xy xy);
+t_xy	rescal(t_xy xy, int scal_factor);
+void    print_dimention(t_xy_data xy_arr, char c);
+// void	ft_process_set(t_data *data,char c, int row, int col);
+// void    ft_print_map(t_data *data);
+// void	end_game_menu(t_data *data);
+// void	exit_game(t_data *data);
+// void    ft_display_data_info(t_data *data);
+// char    *ft_error_return(int error);
+// int		ft_arr_len(char **arr);
+// int		ft_is_square(t_data *data);
+// int		ft_check_param(t_data *data, char *path);
+// int		ft_is_close(char **map, int hauteur, int largeur);
+// int		ft_check_dimentions(t_data *data);
+// int		ft_check_valide_way(t_data *g_data);
+// int		ft_close_windows(int keycode, t_data *data);
+// int		ft_manage_keyboard(int keycode, t_data *data);
+// int		ft_colors(int larg, int lo);
+// int		ft_put_img(t_data *data);
+// void 	*char_layer(t_data *data, int keycode);
 
-int		ft_manage_mouse(int keycode, t_data *data);
-int		ft_manage_keyboard(int keycode, t_data *data);
-int		ft_close_windows(int keycode, t_data **data);
-void	ft_flood_fill(char **tab, t_dimention size, t_dimention begin);
-void	ft_check_valide_way(char **tab, t_data *data, t_dimention begin);
 #endif

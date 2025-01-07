@@ -1,38 +1,63 @@
 CC = gcc 
-GFLAGS= -Werror -Wall -Wextra
+GFLAGS= -Werror -Wall -Wextra -I./include
 
 NAME= so_long
 NAME_TEST= so_long_test
+#srcs/hook/manage_hook.c \
 
-SRCS =	srcs/main.c \
-		srcs/so_long_utils.c \
-		srcs/check_params/check_params_1.c \
-		srcs/check_params/check_valide_way.c \
-		srcs/hook/manage_hook.c \
-		srcs/utils/* \
-		gnl/get_next_line_utils.c \
-		gnl/get_next_line.c \
+SRCS =	src/gnl/get_next_line_utils.c \
+		src/gnl/get_next_line.c \
+		src/hook_managment/hook_manager.c \
+		src/error_managment/error_layer.c \
+		src/memory_managment/memory_cleaner.c \
+		src/initialisation/1_init.c \
+		src/initialisation/2_get_map.c \
+		src/initialisation/3_check_map.c \
+		src/initialisation/4_check_valide_way.c \
+		src/image_loader/1_start_img_loader.c \
+		src/image_loader/2_path_loader.c \
+		src/image_loader/3_image_loader.c \
+		src/image_layer/image_layer.c \
+		src/main.c \
+		src/utils.c \
 
-SRCS_TEST = srcs/so_long_utils.c srcs/check_params/check_params_1.c  gnl/get_next_line_utils.c gnl/get_next_line.c test_unit/test_unit_check_params/*
-LIB= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft 
+LIB= -Llib/mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -Llibft -lft 
+#srcs/main.c 
 
-OBJS = $(SRCS:.c =.o)
-OBJS_TEST = $(SRCS_TEST:.c =.o)
+SRCS_TEST = src/unit_test.c src/error_managment/*.c
+LIB2= -Llibft -lft
+
+MAP=
+
+OBJS = $(SRCS:.c=.o)
+OBJS_TEST = $(SRCS_TEST:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(GFLAGS) $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(GFLAGS) -fsanitize=address $(OBJS) $(LIB) -o $(NAME)
+	make clean
 
-#%.o: %.c
-#	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean:
-	rm -f srcs/*.o
+	rm -f 	src/gnl/get_next_line_utils.o \
+			src/gnl/get_next_line.o \
+			src/hook/hook_manager.o \
+			src/error_managment/error_layer.o \
+			src/memory_managment/memory_cleaner.o \
+			src/initialisation/1_init.o \
+			src/initialisation/2_get_map.o \
+			src/initialisation/3_check_map.o \
+			src/initialisation/4_check_valide_way.o \
+			src/image_loader/1_start_img_loader.o \
+			src/image_loader/2_path_loader.o \
+			src/image_loader/3_image_loader.o \
+			src/main.o
 
 fclean: clean
 	rm -f ${NAME}
 	rm -f ${NAME_TEST}
+	rm  -f filename
 
 re: clean fclean ${NAME}
 
@@ -54,8 +79,10 @@ libft:
 
 test:
 	$(CC) $(GFLAGS) $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
+	valgrind --leak-check=full  --leak-resolution=high --track-origins=yes --show-leak-kinds=all --log-file=filename --num-callers=500 -s ./$(NAME_TEST)
 
-lauch: all 
-	valgrind --leak-check=full --show-leak-kinds=all -s ./${NAME}  map/map2.ber
+run: $(OBJS)
+	$(CC) $(GFLAGS) $(OBJS) $(LIB) -o $(NAME)
+	valgrind --leak-check=full  --leak-resolution=high --track-origins=yes --show-leak-kinds=all --log-file=filename --num-callers=500 -s ./so_long map/map1.ber
 
-.PHONY: re all clean fclean so_long copy libft test
+.PHONY: re all clean fclean so_long copy libft test run $(NAME) $(NAME_TEST)
