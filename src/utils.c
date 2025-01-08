@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:55:17 by cb                #+#    #+#             */
-/*   Updated: 2025/01/07 14:18:07 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:15:25 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,42 @@ void    ft_display_data_info(t_data *data)
     print_map(data);
     printf("\n//////////////////////////////////////////\n\n");
 
+}
+
+t_xy	ft_s_dimention(void)
+{
+	t_xy	dimention;
+
+	dimention.col = 0;
+	dimention.row = 0;
+	return (dimention);
+}
+
+void	ft_put_border(t_data *data, t_border b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i <= b.size.col)
+	{
+		j = 0;
+		while (j <= b.size.row)
+		{
+			if (i <= b.border_size
+				|| (i >= b.size.col - b.border_size && i <= b.size.col))
+				mlx_pixel_put(data->mlx, data->window,
+				j + b.targ.col-b.size.col / 2, i + b.targ.row - b.size.row /2, b.b_color);
+			else
+				if(j<= b.border_size || (j >= b.size.col - b.border_size && j<= b.size.col))
+					mlx_pixel_put(data->mlx, data->window,
+					j + b.targ.col - b.size.col/ 2, i + b.targ.row - b.size.row/2, b.b_color);
+			else
+				if (b.r_color)
+					mlx_pixel_put(data->mlx, data->window, 
+					j + b.targ.col - b.size.col/ 2, i + b.targ.row - b.size.row/2, b.r_color);
+			j++;
+		}
+		i++;
+	}
 }

@@ -60,11 +60,8 @@ void	_putwall(t_data *data, void *im)
 void	ft_put_wall(t_data *data)
 {
 	void	*im;
-	int 	w;
-	int		h;
+	
 
-	h = 0;
-	w = 0;
 	im = data->img_set[2]->img;
 	if(!im)
 	{
@@ -72,7 +69,7 @@ void	ft_put_wall(t_data *data)
 		return ;
 	}
 	else
-		printf("push image w %d et h %d sur map %d X %d ...\n", w,h,data->xy_data.map.col,data->xy_data.map.row);
+		printf("push image et h %d sur map %d X ...\n",data->xy_data.map.col,data->xy_data.map.row);
 	_putwall(data, im);
 }
 
@@ -88,7 +85,7 @@ void    start_game(t_data **data)
 	//ft_put_wall(*data);	
     mlx_hook((*data)->window, 2, 1L<<0 , manage_keyboard, (*data));
     printf("adresse 1: %p et adresse 2: %p\n", (*data)->mlx, (*data)->window);
-	;
+	
 	if(run_image_layer(data) != 0)
 		error_layer(ERR_FRAME);
    	mlx_hook((*data)->window, 17, 1L<<0 , close_windows, (*data));

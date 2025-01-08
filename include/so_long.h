@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/07 15:25:57 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/08 02:24:18 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 #define TILD_SIZE 					128
 # define M_PI						3.14159265358979323846
 
-#define LEFT 1
-#define RIGHT 2
-#define FRONT 3
-#define	FACE  4
+#define LEFT 	1
+#define RIGHT	2
+#define FRONT	3
+#define	FACE 	4
 
 #define	IMG_SET_SIZE 6
 
@@ -63,10 +63,11 @@ typedef struct s_xy_data
 
 typedef struct s_img
 {
-	char 				*class;
+	int 				class;
+	int					subclass;
 	int 				position;
 	void				*img;
-	int					*addr;
+	char				*addr;
 	int					bit_per_pixel;
 	int					line_length;
 	int					endian;
@@ -112,6 +113,9 @@ int		get_area(t_xy xy);
 t_xy	rescal(t_xy xy, int scal_factor);
 void    print_dimention(t_xy_data xy_arr, char c);
 void    ft_display_data_info(t_data *data);
+t_xy	ft_s_dimention(void);
+void    print_dimention(t_xy_data xy_arr, char c);
+void	ft_put_border(t_data *data, t_border b);	
 // void	ft_process_set(t_data *data,char c, int row, int col);
 // void    ft_print_map(t_data *data);
 // void	end_game_menu(t_data *data);
@@ -129,7 +133,5 @@ void    ft_display_data_info(t_data *data);
 // int		ft_colors(int larg, int lo);
 // int		ft_put_img(t_data *data);
 // void 	*char_layer(t_data *data, int keycode);
-
-#define PRINT(msg) printf("%s\n", msg)
 
 #endif
