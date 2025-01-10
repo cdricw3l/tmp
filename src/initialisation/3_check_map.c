@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_check_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/09 17:02:48 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/10 22:51:00 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	check_map(t_data *data)
 
 	i = 0;
 	set = "01CEP";
+	assert(data);
 	if (check_dimentions(data))
 		return (check_dimentions(data));
 	while (data->map[i])

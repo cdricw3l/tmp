@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unit_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:51:28 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 15:32:20 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/10 22:51:28 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ int dynamique_hook(t_data *d)
    
     t_img_sets *data;
     t_img *im;
-    t_img *new;
+    //t_img *new;
 
     data = d->img_sets;
     im = data->img_set_left[0];
     
-    new = malloc(sizeof(t_img));
+    //new = malloc(sizeof(t_img));
     ft_slice_img(im);
-    mlx_put_image_to_window(d->mlx,d->window, im->img, 10, 10);
-    if(d->mlx != NULL && (im->width / im->frame_size) != 0 )
-    {
-        new->img = mlx_new_image(d->mlx, 32 , 32);
+    // mlx_put_image_to_window(d->mlx,d->window, im->img, 10, 10);
+    // if(d->mlx != NULL && (im->width / im->frame_size) != 0 )
+    // {
+    //     new->img = mlx_new_image(d->mlx, 32 , 32);
         
-        assert(new->img != NULL);
-        assert(new->addr != NULL);
-    }
+    //     assert(new->img != NULL);
+    //     assert(new->addr != NULL);
+    // }
     //my_mlx_pixel_put(new,32 , 32,0x00FF0000);
     //mlx_put_image_to_window(d->mlx, d->window, new, 10,10);
     sleep(1);
@@ -142,10 +142,10 @@ int unit_test_init_and_clean(void)
     data->map_name = "map/map3.ber";
     data->map = get_map(data);
     assert(data->map != NULL);
-    printf("coici data %p \n", data->map);
-    mlx_key_hook(data->window,&ft_close_windows, &data);
-    mlx_loop_hook(data->mlx, &dynamique_hook, data);
-    mlx_loop(data->mlx);
+    
+    check_map(data);
+    
+    free_memory(&data, 1);    
     return(0);    
 }
 
@@ -154,44 +154,44 @@ int main(void)
     
     unit_test_init_and_clean();
 
-    t_data *data;
+    // t_data *data;
 
 
-    data = malloc(sizeof(t_data));
-    assert(data != NULL);
-    char *dir = "map";
-    struct dirent *dent;
-    DIR *j = opendir(dir);
-    if (j == NULL)
-    {
-       perror(0);
-       return(0);
-    }
-    dent = readdir(j);
-    int i = 0;
-    while (dent != NULL)
-    {   
+    // data = malloc(sizeof(t_data));
+    // assert(data != NULL);
+    // char *dir = "map";
+    // struct dirent *dent;
+    // DIR *j = opendir(dir);
+    // if (j == NULL)
+    // {
+    //    perror(0);
+    //    return(0);
+    // }
+    // dent = readdir(j);
+    // int i = 0;
+    // while (dent != NULL)
+    // {   
 
-        if(dent->d_name[ft_strlen(dent->d_name) - 1] == 'r')
-        {
-            data->map_name = ft_strjoin("map/",dent->d_name);
-            data->map = get_map(data);
-            printf("iindex de map : %d\n", i);
-            if(data->map == NULL)
-            {
-                error_layer(99);
-                printf("result error: %s\n", data->map_name);
-            }
-            free(data->map_name);
-            assert(data->map != NULL );
-            assert(check_map(data) == 0);
-        }
-        dent = readdir(j);
-        i++;
-    }
-    closedir(j);
+    //     if(dent->d_name[ft_strlen(dent->d_name) - 1] == 'r')
+    //     {
+    //         data->map_name = ft_strjoin("map/",dent->d_name);
+    //         data->map = get_map(data);
+    //         printf("iindex de map : %d\n", i);
+    //         if(data->map == NULL)
+    //         {
+    //             error_layer(99);
+    //             printf("result error: %s\n", data->map_name);
+    //         }
+    //         free(data->map_name);
+    //         assert(data->map != NULL );
+    //         assert(check_map(data) == 0);
+    //     }
+    //     dent = readdir(j);
+    //     i++;
+    // }
+    // closedir(j);
     
     //printf("voivci la screen size %d et %d\n", data->xy_data.screen_size.col, data->xy_data.screen_size.row);
-    (void)data;
+    //(void)data;
     return (0);
 }

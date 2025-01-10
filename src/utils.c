@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:55:17 by cb                #+#    #+#             */
-/*   Updated: 2025/01/09 11:20:28 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/10 22:50:30 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void   print_map(t_data *data)
     {
         hauteur = data->xy_data.map.row;
         largeur = data->xy_data.map.col;
+        assert(largeur > 0 && hauteur > 0 );
         map = data->map;
         while (i < hauteur)
         {
@@ -130,7 +131,6 @@ void   print_map(t_data *data)
                 printf("%c", map[i][j]);
                 j++;
             }
-            printf("\n");
             i++;
         }
     }

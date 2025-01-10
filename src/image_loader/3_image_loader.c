@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_image_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 14:03:25 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/10 22:48:10 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	push_img_set(t_data *data, t_img **img_set, char **path, int set)
 			return(clean_img_set(img_set, i));
 		if(set >= 0 && set <=2)
 			img_set[i]->set = set;
-		ft_slice_img(img_set[i]);
 		i++;
 	}
 	return(0);
