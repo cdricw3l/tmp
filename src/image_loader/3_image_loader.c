@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 22:48:10 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:02:05 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	push_img_set(t_data *data, t_img **img_set, char **path, int set)
 		img_set[i] = malloc(sizeof(t_img));
 		if(!img_set[i])
 			return(clean_img_set(img_set, i));
-		printf("voici le path %s, %d\n ", path[i], i);
+		//printf("voici le path %s, %d\n ", path[i], i);
 		img_set[i]->img = mlx_xpm_file_to_image(data->mlx, path[i], &img_set[i]->width,&img_set[i]->width);
 		if(!img_set[i]->img)
 			return(clean_img_set(img_set, i));

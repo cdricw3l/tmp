@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:51:28 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 22:51:28 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:35:18 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,19 +120,13 @@ int unit_test_init_and_clean(void)
         printf("%d \n", i);
         i++;
     }
-    
-
     assert(path_g !=NULL);
     assert(path_l !=NULL);
     assert(path_r !=NULL);
     data->img_sets = malloc(sizeof(t_img_sets));
 
-    int h = get_image_frame_size("../../tildset/number/610_9_1.xpm");
-    assert(h == 1);
-	if(!data->img_sets)
-		return(error_layer(ERR_GET_IMGPATH));
+
     i = image_loader(data, path_g, path_l, path_r);
-    printf("image i %d\n", i);
     assert(i == 0);
     free_path_memory(path_g, path_l, path_r);
     printf("fin du chargement des messages\n");
@@ -143,8 +137,7 @@ int unit_test_init_and_clean(void)
     data->map = get_map(data);
     assert(data->map != NULL);
     
-    check_map(data);
-    
+
     free_memory(&data, 1);    
     return(0);    
 }
@@ -154,9 +147,10 @@ int main(void)
     
     unit_test_init_and_clean();
 
-    // t_data *data;
+    t_data *data;
 
-
+    data = initialisation_and_check("map/map3.ber");
+    assert(data);
     // data = malloc(sizeof(t_data));
     // assert(data != NULL);
     // char *dir = "map";

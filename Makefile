@@ -5,6 +5,8 @@ NAME= so_long
 NAME_TEST= so_long_test
 #srcs/hook/manage_hook.c \
 
+COM=
+
 SRCS =	src/gnl/get_next_line_utils.c \
 		src/gnl/get_next_line.c \
 		src/hook_managment/hook_manager.c \
@@ -24,7 +26,7 @@ SRCS =	src/gnl/get_next_line_utils.c \
 LIB= -Llib/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -Llibft -lft
 #srcs/main.c 
 
-SRCS_TEST = unit_test/unit_test.c ${SRCS}
+SRCS_TEST = unit_test/* ${SRCS}
 LIB2= -Llibft -lft
 
 MAP=
@@ -53,7 +55,7 @@ re: clean fclean ${NAME}
 
 gdev:
 	git add .
-	git commit -m ${NAME}
+	git commit -m ${COM}
 	git push
 
 copy:

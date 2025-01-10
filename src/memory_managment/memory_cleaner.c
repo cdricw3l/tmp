@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_cleaner.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/09 16:42:57 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/10 23:34:34 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	*free_memory(t_data **data, int err)
             clean_image_memory(data, &(*data)->img_sets, SET_SIZE);
 
     }
-    mlx_destroy_display((*data)->mlx);
+    if((unsigned long)(*data)->mlx !=  0xbebebebebebebebe)
+        mlx_destroy_display((*data)->mlx);
     error_layer(err);
     exit(0);
 	return (NULL);
@@ -43,7 +44,9 @@ int	clean_image_memory(t_data **d, t_img_sets **data, int index)
  
 	(void)index;
     i = 0;
-    printf("im adresse %p\n", (*data));
+    if((unsigned long)(*d)->img_sets == 0xbebebebebebebebe)
+        return(1);
+    printf("im adresse %p\n", (*d)->img_sets);
 	while (i < SET_SIZE)
 	{   
         mlx_destroy_image((*d)->mlx,(*data)->img_set_global[i]->img);
