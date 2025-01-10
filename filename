@@ -1,0 +1,35 @@
+==998376== Memcheck, a memory error detector
+==998376== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==998376== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==998376== Command: ./so_long_test map/map2.ber
+==998376== Parent PID: 998365
+==998376== 
+==998376== 
+==998376== HEAP SUMMARY:
+==998376==     in use at exit: 386 bytes in 13 blocks
+==998376==   total heap usage: 126 allocs, 113 frees, 2,556 bytes allocated
+==998376== 
+==998376== 96 bytes in 1 blocks are indirectly lost in loss record 1 of 3
+==998376==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==998376==    by 0x1107D6: get_map (2_get_map.c:71)
+==998376==    by 0x10EFEB: main (unit_test_map.c:29)
+==998376== 
+==998376== 186 bytes in 11 blocks are indirectly lost in loss record 2 of 3
+==998376==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==998376==    by 0x113CAD: ft_strdup (in /home/cbouhadr/Documents/so_long/so_long_test)
+==998376==    by 0x110758: _get_map (2_get_map.c:54)
+==998376==    by 0x1107FF: get_map (2_get_map.c:74)
+==998376==    by 0x10EFEB: main (unit_test_map.c:29)
+==998376== 
+==998376== 386 (104 direct, 282 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==998376==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==998376==    by 0x10EF9D: main (unit_test_map.c:24)
+==998376== 
+==998376== LEAK SUMMARY:
+==998376==    definitely lost: 104 bytes in 1 blocks
+==998376==    indirectly lost: 282 bytes in 12 blocks
+==998376==      possibly lost: 0 bytes in 0 blocks
+==998376==    still reachable: 0 bytes in 0 blocks
+==998376==         suppressed: 0 bytes in 0 blocks
+==998376== 
+==998376== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

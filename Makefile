@@ -42,13 +42,20 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(GFLAGS) -fsanitize=address -g $(OBJS) $(LIB) -o $(NAME)
 
+test: $(OBJS) $(OBJS_TEST)
+	$(CC) $(GFLAGS) -fsanitize=address  $(OBJS) $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
+
+testv: $(OBJS) $(OBJS_TEST)
+	$(CC) $(GFLAGS)  $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
+	valgrind --leak-check=full  --leak-resolution=high --track-origins=yes --show-leak-kinds=all  --num-callers=500 -s ./$(NAME_TEST) map/map2.ber
+
+
 
 clean:
-	rm -f $(OBJS) $(OBJS_TEST)
+	rm -f $(OBJS) 
 
 fclean: clean
 	rm -f ${NAME}
-	rm -f ${NAME_TEST}
 	rm  -f filename
 
 re: clean fclean ${NAME}
@@ -69,12 +76,7 @@ libft:
 	rm -rf libft
 	cp -rf ../42-katas/libft .
 
-testv: $(OBJS) $(OBJS_TEST)
-	$(CC) $(GFLAGS) $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
-	valgrind --leak-check=full  --leak-resolution=high --track-origins=yes --show-leak-kinds=all --log-file=filename --num-callers=500 -s ./$(NAME_TEST) map/map2.ber
 
-test: $(OBJS) $(OBJS_TEST)
-	$(CC) $(GFLAGS) -fsanitize=address -g $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
 
 run: $(OBJS)
 	$(CC) $(GFLAGS) $(OBJS) $(LIB) -o $(NAME)

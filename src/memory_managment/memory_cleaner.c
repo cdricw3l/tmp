@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 23:34:34 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:02:45 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*free_memory(t_data **data, int err)
             while (*map)
             {
                 free(*map);
-                printf("map n'ettoyer avec succes \n");
                 map++;
             }
         }
@@ -32,6 +31,7 @@ void	*free_memory(t_data **data, int err)
             clean_image_memory(data, &(*data)->img_sets, SET_SIZE);
 
     }
+    printf("MEMORYYYYYYYY");
     if((unsigned long)(*data)->mlx !=  0xbebebebebebebebe)
         mlx_destroy_display((*data)->mlx);
     error_layer(err);
@@ -46,8 +46,8 @@ int	clean_image_memory(t_data **d, t_img_sets **data, int index)
     i = 0;
     if((unsigned long)(*d)->img_sets == 0xbebebebebebebebe)
         return(1);
-    printf("im adresse %p\n", (*d)->img_sets);
-	while (i < SET_SIZE)
+	
+    while (i < SET_SIZE)
 	{   
         mlx_destroy_image((*d)->mlx,(*data)->img_set_global[i]->img);
         mlx_destroy_image((*d)->mlx,(*data)->img_set_left[i]->img);
@@ -64,7 +64,6 @@ int	clean_image_memory(t_data **d, t_img_sets **data, int index)
     free((*data)->img_set_left);
     free((*data)->img_set_right);
     free((*data));
-    printf("set d'image nettoyer avec succes\n");
 	return (1);
 }
 
@@ -74,5 +73,4 @@ void	free_path_memory(char **path_g, char **path_l, char **path_r)
 	free(path_g);
 	free(path_l);
 	free(path_r);
-	
 }
