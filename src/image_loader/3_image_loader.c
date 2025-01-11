@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 23:02:05 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:50:51 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	get_image_frame_size(char *path)
 	
 	truc_path1 = ft_substr(ft_strrchr(path, '.') - 1, 0, 1);
 	frame_size = ft_atoi(truc_path1);
-	printf("%s\n", truc_path1);
 	free(truc_path1);
 	if(frame_size <= 0)
 		return(0);
@@ -71,7 +70,6 @@ int	push_img_set(t_data *data, t_img **img_set, char **path, int set)
 		img_set[i] = malloc(sizeof(t_img));
 		if(!img_set[i])
 			return(clean_img_set(img_set, i));
-		//printf("voici le path %s, %d\n ", path[i], i);
 		img_set[i]->img = mlx_xpm_file_to_image(data->mlx, path[i], &img_set[i]->width,&img_set[i]->width);
 		if(!img_set[i]->img)
 			return(clean_img_set(img_set, i));
@@ -92,7 +90,6 @@ int	image_loader(t_data *data, char **path_g, char **path_l, char **path_r)
 {
 	t_img_sets *img_set;
 	
-	printf("voici l'adresse de image set %p\n", data->img_sets);
 	img_set = data->img_sets;
 	img_set->img_set_global = malloc(sizeof(t_img *) * SET_SIZE);
 	img_set->img_set_left = malloc(sizeof(t_img *) * SET_SIZE);

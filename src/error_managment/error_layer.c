@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 03:00:02 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:41:27 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char *error_return(int error)
 		return("[ err ] Deux position de depart ou deux exit sur la map\n");
 	if (error == ERR_FRAME)
 		return("[ err ] probleme creation de la nouvelle frame\n");
-	if (error == 6)
+	if (error == ERR_WIN)
 		return("[ err ] Erreur d'initialisation de la mlx ou de la fenetre");
 	if (error == 0)
 		return("[ clean ]  Structures libéré avec succes\n");

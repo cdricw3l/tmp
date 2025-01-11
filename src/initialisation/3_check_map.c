@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 02:59:31 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:50:07 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	process_set(t_data *data, char c, int row, int col)
 			data->xy_data.exit.col = col;
 			data->xy_data.exit.row = row;
 			data->count_exit++;
-			printf("%d et %d \n", data->xy_data.begin.row, data->xy_data.begin.col);
 		}
 		if (c == 'P')
 		{
@@ -105,12 +104,10 @@ void	process_set(t_data *data, char c, int row, int col)
 			if(data->xy_data.begin.col > data->xy_data.map.col / 2)
 			{
 				data->char_state = LEFT;
-				printf("state : %d\n",data->char_state);
 			}
 			else
 			{
 				data->char_state = RIGHT;
-				printf("state : %d\n",data->char_state);
 			}
 			data->count_begin++;
 		}

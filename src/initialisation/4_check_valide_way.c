@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:18:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 03:09:20 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:52:58 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	fill_arr(char **tab, t_data *data, int col, int row)
 		fill_arr(tab, data, col - 1, row);
 	if(col < size.col - 1)
 		fill_arr(tab, data, col + 1, row);
-	print_map(data);
 }
 
 int	check_valide_way(t_data *data)
@@ -50,6 +49,7 @@ int	check_valide_way(t_data *data)
 		return(1);
 	if (data->count_exit != 0)
 		return(2);
+	print_map(data);
 	return(0);
 }
 // int main(void)

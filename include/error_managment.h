@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:13:54 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 02:59:18 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:40:52 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 #define ERR_WRITE_LOG 17 
 #define ERR_SCOPE 16 
 #define ERR_NO_ITEM 17
+#define ERR_WIN 18
 
 
 int error_layer(int err);

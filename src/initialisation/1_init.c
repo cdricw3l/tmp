@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/10 22:59:23 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:49:46 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_data	*initialisation_and_check(char *path)
 			|| get_area(rescal(data->xy_data.map, TILD_SIZE)) 
 			> get_area(data->xy_data.screen_size))
 		return (free_memory(&data, check_param));
-	// if (check_valide_way(data) == 1)
-	// 	return (free_memory(data, ERR_NO_WAY));
-	printf("area %d et %d ", get_area(rescal(data->xy_data.map, TILD_SIZE)) , get_area(data->xy_data.screen_size));
+	if (check_valide_way(data) == 1)
+		return (free_memory(&data, ERR_NO_WAY));
+	printf("area %d et %d \n", get_area(rescal(data->xy_data.map, TILD_SIZE)) , get_area(data->xy_data.screen_size));
 	return (data);
 }

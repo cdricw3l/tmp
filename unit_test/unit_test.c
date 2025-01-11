@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:51:28 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 00:02:15 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 04:09:46 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,47 +40,9 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int dynamique_hook(t_data *d)
-{   
-   
-    t_img_sets *data;
-    t_img *im;
-    //t_img *new;
 
-    data = d->img_sets;
-    im = data->img_set_left[0];
+
     
-    //new = malloc(sizeof(t_img));
-    ft_slice_img(im);
-    // mlx_put_image_to_window(d->mlx,d->window, im->img, 10, 10);
-    // if(d->mlx != NULL && (im->width / im->frame_size) != 0 )
-    // {
-    //     new->img = mlx_new_image(d->mlx, 32 , 32);
-        
-    //     assert(new->img != NULL);
-    //     assert(new->addr != NULL);
-    // }
-    //my_mlx_pixel_put(new,32 , 32,0x00FF0000);
-    //mlx_put_image_to_window(d->mlx, d->window, new, 10,10);
-    sleep(1);
-    return (0);
-}
-
-int ft_close_windows(int keycode, t_data **data)
-{
-    printf("voici le keycode %d\n", keycode);
-	(void)data;
-    if(keycode == 65307 || keycode == 64)
-    {
-        printf("voici %p \n", (*data)->img_sets);
-        printf("data .mlx %p\n", (*data)->map);
-	    mlx_destroy_window((*data)->mlx, (*data)->window);
-        free_memory(data, 42);
-        return(0);
-    }
-    return(1);
-}
-
 
 //test data initialisation and clean;
 
