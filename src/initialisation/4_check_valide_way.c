@@ -3,14 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   4_check_valide_way.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:18:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 03:52:58 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:08:07 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/initialisation.h"
+
+
+static void *ft_clean_arr(char **arr, int i)
+{
+	int j;
+
+	j = 0;
+	while (j < i)
+		free(arr[i++]);
+	free(arr);
+	return(NULL);
+}
+
+static	char **ft_tmp_arr(char **arr, t_xy map)
+{
+	char **tmp;
+	int height;
+	int i;
+	
+	height = map.row;
+	i = 0;
+	tmp = malloc(sizeof(char *) * height);
+	if(!tmp)
+		return(NULL);
+	while (i < height)
+	{
+		tmp[i] = ft_strdup(arr[i]);
+		if(!tmp[i])
+			return(ft_clean_arr(tmp, i));
+		i++;
+	}
+	return(tmp);
+}
 
 void	fill_arr(char **tab, t_data *data, int col, int row)
 {
@@ -21,10 +54,15 @@ void	fill_arr(char **tab, t_data *data, int col, int row)
 			&& tab[row][col] != 'C' && tab[row][col] != 'E' )
 		return ;
 	if(tab[row][col] == 'C')
+	{
 		data->check_item++;
+		data->map[row][col] = 'X';
+	}
 	if(tab[row][col] == 'E')
 		data->count_exit--;
+	
 	tab[row][col] = ' ';
+	
 	if(row > 1)
 		fill_arr(tab, data, col, row - 1);
 	if(row < size.row - 1)
@@ -38,13 +76,18 @@ void	fill_arr(char **tab, t_data *data, int col, int row)
 int	check_valide_way(t_data *data)
 {
 	char		**tab;
+	char		**tmp;
 	t_xy		begin;
 
 	if (!data->map)
 		return(1);
 	tab = data->map;
 	begin = data->xy_data.begin;
-	fill_arr(tab,  data, begin.col, begin.row);
+	tmp = ft_tmp_arr(tab, data->xy_data.map);
+	printf("tableau copier avec succes \n");
+	if(!tmp)
+		return(1);
+	fill_arr(tmp,  data, begin.col, begin.row);
 	if (data->check_item != data->count_item)
 		return(1);
 	if (data->count_exit != 0)

@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/09 05:57:52 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/11 21:10:29 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_update_mouvement(t_data *data, t_data *g, t_xy *begin)
 	}
 	else
 	{
-		if (g->map[begin->row][begin->col] == 'E')
+		//
 			// if(g->count_item == 0)
 			// 	exit_game(data);
 		g->map[begin->row][begin->col] = 'P';
@@ -64,7 +64,7 @@ void	ft_update_position(t_data *d, t_data *g, int key, t_xy *b)
 	}
 	else
 		printf("Le personage ne bouge pas:\ny: %d, x: %d\n", b->row, b->col);
-	//print_map(g);
+	print_map(g);
 }
 
 void	ft_keycode_counter_handler(t_data *data, int keycode)

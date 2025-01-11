@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 00:40:04 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:41:47 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@
 #define FRONT	3
 #define	FACE 	4
 
-#define	IMG_SET_SIZE 3
-#define	SET_SIZE 14
+#define	SET_SIZE 6
 
 enum Dimention_message
 {
@@ -62,15 +61,6 @@ typedef struct s_xy
 	int col;
 
 } t_xy;
-
-typedef struct s_img_sets
-{
-	t_img				**img_set_global;
-	t_img				**img_set_left;
-	t_img				**img_set_right;
-	
-} t_img_sets;
-
 
 typedef struct s_xy_data
 {
@@ -109,21 +99,11 @@ typedef struct s_data
 	int					count_exit;
 	int					count_mouvement;
 	t_xy_data			xy_data;
-	t_img_sets			*img_sets;
+	t_img				**img_set_global;
 	int					img_set_size;
 	
 } t_data ;
 
-typedef struct s_border
-{
-	t_point	size;
-	t_point	targ;
-	
-	int		border_size; //epaisseur
-	int		b_color;	// border color;
-	int		r_color;	// remplissage color;
-	
-} t_border;
 
 
 t_data	*data_initialisation(char *map_path);
@@ -135,9 +115,8 @@ t_xy	rescal(t_xy xy, int scal_factor);
 void    print_dimention(t_xy_data xy_arr, int c);
 void    ft_display_data_info(t_data *data);
 t_xy	ft_s_dimention(void);
-void	ft_put_border(t_data *data, t_border b);
 void	print_map(t_data *data);
-void 	print_path(char **path_g, char **path_l, char **path_r);
+void 	print_path(char **path_g);
 void	ft_slice_img(t_img *img);
 
 // void	ft_process_set(t_data *data,char c, int row, int col);

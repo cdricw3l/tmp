@@ -1,5 +1,5 @@
 CC = gcc 
-GFLAGS= -Werror -Wall -Wextra -I./include -g
+GFLAGS= -Werror -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -I./include -g
 
 NAME= so_long
 NAME_TEST= so_long_test
@@ -21,12 +21,12 @@ SRCS =	src/gnl/get_next_line_utils.c \
 		src/image_loader/3_image_loader.c \
 		src/image_layer/image_layer.c \
 		src/utils.c \
-#src/main.c \
+		src/main.c \
 
 LIB= -Llib/mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -Llibft -lft
 #srcs/main.c 
 
-SRCS_TEST = unit_test/* ${SRCS}
+SRCS_TEST =  ${SRCS}
 LIB2= -Llibft -lft
 
 MAP=

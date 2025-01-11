@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 03:12:19 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 14:47:29 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/11 15:00:46 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,23 @@ int main(void)
     // mlx_hook(data->window, ON_KEYDOWN, 1l<<0, ft_close_windows,&data);
     // mlx_loop(data->mlx);
     
-    int  old;
+    t_img  old;
     t_img new;
 
-    old = data->img_sets->img_set_left[5]->width;
+    old = *data->img_sets->img_set_left[2];
     assert(&old);
-    assert(&new.img);
 
-    //int size = old->frame_size;
-    printf("voici la class %d\n", old);
+    int largeur = old.width / old.frame_size;
+    printf("voici la largeur %d\n", largeur);
+    new.img = mlx_new_window(data->mlx, largeur , old.height, "hello");
+    assert(new.img);
+
+    new.addr = mlx_get_data_addr(&new.img, &new.bit_per_pixel, &new.line_length, &new.endian);
+    assert(new.addr);
+    
+    //my_mlx_pixel_put(&new, 0, 128, 0xFF0000);
+    
+    mlx_loop(data->mlx);
 
     return(0);
 }

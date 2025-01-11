@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 14:15:16 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/11 18:31:20 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ void	*free_memory(t_data **data, int err)
                 map++;
             }
         }
-        if((*data)->img_sets)
-            clean_image_memory(data, &(*data)->img_sets, SET_SIZE);
+        if((*data)->img_set_global)
+            clean_image_memory(data, (*data)->img_set_global, SET_SIZE);
 
     }
     if((unsigned long)(*data)->mlx !=  0xbebebebebebebebe)
     {
-        printf("MEMORYYYYYYYY%p\n", (*data)->mlx);
         mlx_destroy_display((*data)->mlx);
         free((*data)->mlx);
     }
@@ -42,32 +41,27 @@ void	*free_memory(t_data **data, int err)
     exit(0);
 	return (NULL);
 }
-int	clean_image_memory(t_data **d, t_img_sets **data, int index)
+int	clean_image_memory(t_data **d, t_img **data, int index)
 {
 	int	i;
  
 	(void)index;
     i = 0;
-    if((unsigned long)(*d)->img_sets == 0xbebebebebebebebe)
+    if((unsigned long)(*d)->img_set_global == 0xbebebebebebebebe)
         return(1);
 	
     while (i < SET_SIZE)
 	{   
-        mlx_destroy_image((*d)->mlx,(*data)->img_set_global[i]->img);
-        mlx_destroy_image((*d)->mlx,(*data)->img_set_left[i]->img);
-        mlx_destroy_image((*d)->mlx,(*data)->img_set_right[i]->img);
-        free((*data)->img_set_global[i]->class);
-        free((*data)->img_set_left[i]->class);
-        free((*data)->img_set_right[i]->class);
-        free((*data)->img_set_global[i]);
-        free((*data)->img_set_left[i]);
-        free((*data)->img_set_right[i]);
+        printf("MEMORYYYYYYYY\n");
+        // if((*d)->mlx)
+        //     mlx_destroy_image((*d)->mlx,data[i]->img);
+        // else
+        free(data[i]->img);
+        free(data[i]->class);
+        free(data[i]);
 		i++;
 	}
-    free((*data)->img_set_global);
-    free((*data)->img_set_left);
-    free((*data)->img_set_right);
-    free((*data));
+    free(data);
 	return (1);
 }
 
