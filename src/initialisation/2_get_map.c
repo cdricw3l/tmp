@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 17:59:05 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 22:49:31 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:29:42 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	**get_map(t_data *data)
 	if (!map)
 		return (NULL);
 	i = _get_map(data->map_name, map);
-	printf("voici get map %d\n", i);
 	if (i == 0)
 		return (NULL);
 	return (map);

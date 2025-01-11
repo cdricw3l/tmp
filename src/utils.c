@@ -6,23 +6,23 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:55:17 by cb                #+#    #+#             */
-/*   Updated: 2025/01/10 22:50:30 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:39:57 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void    print_dimention(t_xy_data xy_arr, char c)
+void    print_dimention(t_xy_data xy_arr, int c)
 {
     t_xy    xy;
     
-    if(c == 'b')
+    if(c == P_BEGIN)
         xy = xy_arr.begin;
-    else if(c == 'e')
+    else if(c == P_EXIT)
         xy = xy_arr.exit;
-    else if(c == 'm')
+    else if(c == P_MAP)
         xy = xy_arr.map;
-    else if(c == 's')
+    else if(c == P_SCREEN)
         xy = xy_arr.screen_size;
     printf("[ data ] coordonees de la structure: col: %d row: %d\n",
             xy.col, xy.row);
@@ -132,6 +132,7 @@ void   print_map(t_data *data)
                 j++;
             }
             i++;
+            printf("\n");
         }
     }
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/10 23:00:50 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:40:04 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@
 
 #define	IMG_SET_SIZE 3
 #define	SET_SIZE 14
+
+enum Dimention_message
+{
+    P_BEGIN = 1,
+    P_EXIT = 2,
+    P_MAP = 3,
+    P_SCREEN = 4,
+};
 
 typedef struct s_xy
 {
@@ -124,10 +132,9 @@ void	exit_game(t_data *data);
 
 int		get_area(t_xy xy);
 t_xy	rescal(t_xy xy, int scal_factor);
-void    print_dimention(t_xy_data xy_arr, char c);
+void    print_dimention(t_xy_data xy_arr, int c);
 void    ft_display_data_info(t_data *data);
 t_xy	ft_s_dimention(void);
-void    print_dimention(t_xy_data xy_arr, char c);
 void	ft_put_border(t_data *data, t_border b);
 void	print_map(t_data *data);
 void 	print_path(char **path_g, char **path_l, char **path_r);
