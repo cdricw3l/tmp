@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_layer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/09 19:31:10 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/11 03:00:02 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char *error_return(int error)
 		return("[ clean ]  Structures libéré avec succes\n");
 	if (error == 99)
 		return("[ ERREUR MAP ] Error map\n");
+	if (error == ERR_NO_ITEM)
+		return("[ clean ]  Pas d'item du la carte\n");
 	if (error == 42)
 		return("[ clean ]  PROGRAMME TERMEINNER AVEC SUCCES\n");
 	return (NULL);

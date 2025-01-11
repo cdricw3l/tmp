@@ -6,7 +6,7 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/10 22:58:32 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 02:59:31 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int	check_map(t_data *data)
 	}
 	if (data->count_exit + data->count_begin != 2)
 		return (ERR_DUPLICATE);
+	if (data->count_item == 0)
+		return (ERR_NO_ITEM);
 	return (0);
 }
 

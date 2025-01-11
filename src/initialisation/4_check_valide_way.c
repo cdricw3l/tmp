@@ -6,63 +6,50 @@
 /*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:18:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 01:52:04 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 03:09:20 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/initialisation.h"
 
-void ft_put_pixel(t_img *data, int x, int y, int color)
-{
-    char *pxl;
-    
-    if (x >= 0 && x < 128 && y >= 0 && y < 128)
-    {
-        pxl = data->addr + (y * data->line_length + x * (data->bit_per_pixel / 8));
-        *(unsigned int *)pxl = color;
-    }
-}
-
-void	fill_arr(char **tab, int target, t_data *data, int col, int row)
+void	fill_arr(char **tab, t_data *data, int col, int row)
 {
 	t_xy size;
 
 	size = data->xy_data.map;
-	
-	
-	if(tab[row][col] != '0' && tab[row][col] != 'P' )
+	if(tab[row][col] != '0' && tab[row][col] != 'P' 
+			&& tab[row][col] != 'C' && tab[row][col] != 'E' )
 		return ;
-		
-	tab[row][col] = 'X';
-	printf("TARGET : %c, col %d, row %d\n", tab[row][col], col, row);
-	
+	if(tab[row][col] == 'C')
+		data->check_item++;
+	if(tab[row][col] == 'E')
+		data->count_exit--;
+	tab[row][col] = ' ';
 	if(row > 1)
-		fill_arr(tab, target, data, col, row - 1);
+		fill_arr(tab, data, col, row - 1);
 	if(row < size.row - 1)
-		fill_arr(tab, target, data, col, row + 1);
+		fill_arr(tab, data, col, row + 1);
 	if(col > 1)
-		fill_arr(tab, target, data, col - 1, row);
+		fill_arr(tab, data, col - 1, row);
 	if(col < size.col - 1)
-	fill_arr(tab, target, data, col + 1, row);
-	
+		fill_arr(tab, data, col + 1, row);
 	print_map(data);
 }
 
 int	check_valide_way(t_data *data)
 {
 	char		**tab;
-	int			target;
 	t_xy		begin;
 
 	if (!data->map)
 		return(1);
 	tab = data->map;
 	begin = data->xy_data.begin;
-	target = tab[begin.row][begin.col];
-	fill_arr(tab, target, data, begin.col, begin.row);
-	//print_map(data);
-	// if (data->check_item != data->count_item)
-	// 	return(1);
+	fill_arr(tab,  data, begin.col, begin.row);
+	if (data->check_item != data->count_item)
+		return(1);
+	if (data->count_exit != 0)
+		return(2);
 	return(0);
 }
 // int main(void)

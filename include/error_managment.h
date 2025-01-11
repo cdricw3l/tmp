@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_managment.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:13:54 by cb                #+#    #+#             */
-/*   Updated: 2025/01/06 22:12:51 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/11 02:59:18 by cbouhadr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 #define ERR_OPEN_LOG 16 
 #define ERR_WRITE_LOG 17 
 #define ERR_SCOPE 16 
+#define ERR_NO_ITEM 17
 
 
 int error_layer(int err);
