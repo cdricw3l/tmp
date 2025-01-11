@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unit_initialisation_final.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 03:12:19 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 04:30:38 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:47:29 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ enum {
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
+
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bit_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 
 int ft_close_windows(int keycode, t_data **data)
 {
@@ -66,6 +75,8 @@ int dynamique_hook(t_data *d)
         mlx_put_image_to_window(d->mlx,d->window,im3->img, 500, 200);
     sleep(1);
     k++;
+    if(k == 14)
+        k = 0;
     return (0);
 }
 
@@ -91,12 +102,19 @@ int main(void)
     else
         printf("WINDOWS INITIALISER AVEC SUCCES %p\n", data->mlx);
     
-    mlx_loop_hook(data->mlx, &dynamique_hook, data);
+    // mlx_loop_hook(data->mlx, &dynamique_hook, data);
+    // mlx_hook(data->window, ON_KEYDOWN, 1l<<0, ft_close_windows,&data);
+    // mlx_loop(data->mlx);
     
-    //mlx_hook(data->window, ON_KEYDOWN, 1l<<0, ft_close_windows,&data);
+    int  old;
+    t_img new;
 
-    mlx_loop(data->mlx);
-    
+    old = data->img_sets->img_set_left[5]->width;
+    assert(&old);
+    assert(&new.img);
+
+    //int size = old->frame_size;
+    printf("voici la class %d\n", old);
 
     return(0);
 }

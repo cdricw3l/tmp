@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unit_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 15:51:28 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 04:09:46 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:19:49 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,7 @@ void ft_slice_img(t_img *img)
     printf(" line len img %d, img class %s, largeur %d \n", img->line_length, img->class, img->width);
 }
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bit_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
 
 

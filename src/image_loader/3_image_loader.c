@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_image_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 03:50:51 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:47:08 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int	push_img_set(t_data *data, t_img **img_set, char **path, int set)
 	int i;
 	
 	i = 0;
-	while(i < 14)
+	while(i < SET_SIZE)
 	{
 		img_set[i] = malloc(sizeof(t_img));
 		if(!img_set[i])
 			return(clean_img_set(img_set, i));
-		img_set[i]->img = mlx_xpm_file_to_image(data->mlx, path[i], &img_set[i]->width,&img_set[i]->width);
+		img_set[i]->img = mlx_xpm_file_to_image(data->mlx, path[i], &img_set[i]->width,&img_set[i]->height);
 		if(!img_set[i]->img)
 			return(clean_img_set(img_set, i));
 		img_set[i]->class = get_image_class(path[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_cleaner.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 00:02:45 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:15:16 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ void	*free_memory(t_data **data, int err)
             clean_image_memory(data, &(*data)->img_sets, SET_SIZE);
 
     }
-    printf("MEMORYYYYYYYY");
     if((unsigned long)(*data)->mlx !=  0xbebebebebebebebe)
+    {
+        printf("MEMORYYYYYYYY%p\n", (*data)->mlx);
         mlx_destroy_display((*data)->mlx);
+        free((*data)->mlx);
+    }
+    free((*data));
     error_layer(err);
     exit(0);
 	return (NULL);
@@ -69,7 +73,6 @@ int	clean_image_memory(t_data **d, t_img_sets **data, int index)
 
 void	free_path_memory(char **path_g, char **path_l, char **path_r)
 {
-	
 	free(path_g);
 	free(path_l);
 	free(path_r);
