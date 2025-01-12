@@ -47,7 +47,7 @@ test: $(OBJS) $(OBJS_TEST)
 
 testv: $(OBJS) $(OBJS_TEST)
 	$(CC) $(GFLAGS)  $(OBJS_TEST) $(LIB) -o $(NAME_TEST)
-	valgrind --leak-check=full  --leak-resolution=high valgrind --log-file="filename" --track-origins=yes --show-leak-kinds=all  --num-callers=500 -s ./$(NAME_TEST) map/map2.ber
+	valgrind --leak-check=full  --leak-resolution=high valgrind  --track-origins=yes --show-leak-kinds=all  --num-callers=500 -s ./$(NAME_TEST) map/map2.ber
 
 
 
