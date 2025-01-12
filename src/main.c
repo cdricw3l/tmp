@@ -23,12 +23,17 @@ void ft_slice_img(t_img *img)
 void    start_game(t_data *data)
 {
 
-    data->window = mlx_new_window(data->mlx, TILD_SIZE * data->xy_data.map.col, TILD_SIZE * data->xy_data.map.row, "hello");
+	t_xy win;
+
+	win.col = data->xy_data.map.col;
+	win.row = data->xy_data.map.row;
+
+	data->window = mlx_new_window(data->mlx,win.col * TILD_SIZE, win.row * TILD_SIZE, "hello");
     if(!data->window || !data->mlx)
     {
         return ;
     }
-	ft_image_drawer(data);
+	//ft_image_drawer(data);
     mlx_hook(data->window, 2, 1L<<0 ,manage_keyboard, data);
    	mlx_hook(data->window, 17, 1L<<0 ,close_windows, data);
     mlx_loop(data->mlx) ;

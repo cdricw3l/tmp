@@ -13,6 +13,8 @@
 
 #include "../../include/image_layer.h"
 
+
+
 int		ft_get_img_idx(t_data *data,char c)
 {
 	if(c == '1')
@@ -79,29 +81,8 @@ t_img *initial_draw(t_data *data)
 	(void)draw_area;
 	i = 0;
 	size = data->xy_data.map;
-	print_dimention(data->xy_data, P_MAP);
-	new.img = mlx_new_image(data->mlx, TILD_SIZE * data->xy_data.map.col, TILD_SIZE * data->xy_data.map.row);
-	if(!new.img)
-		return(NULL);
-	new.addr = mlx_get_data_addr(new.img,&new.bit_per_pixel, &new.line_length, &new.endian);
-	if(!new.addr)
-		return(NULL);
-	while (i < size.row)
-	{
-		j = 0;
-		while (j <  size.col)
-		{
-			draw_area.col = j * TILD_SIZE;
-			draw_area.row = i *  TILD_SIZE;
-			int path = ft_get_img_idx(data,data->map[i][j]);
-			if(path >= 0 && path < 6)
-				my_mlx_pixel_put(&new, data->img_set_global[path], draw_area);
-			j++;
-		}
-		i++;	
-	}
-	mlx_put_image_to_window(data->mlx,  data->window, new.img,0,0);
-    data->state_game = 1;
+    data->window = mlx_new_window(data->mlx, TILD_SIZE * data->xy_data.map.col, TILD_SIZE * data->xy_data.map.row, "hello");
+    mlx_hook(data->window, 2, 1L<<0 ,manage_keyboard, data);
 	return(NULL);
 
 }

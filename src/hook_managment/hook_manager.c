@@ -6,11 +6,12 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 13:48:59 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 16:22:32 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/hook_managment.h"
+
 
 int ft_is_keycode_in_set(int keycode)
 {
@@ -53,31 +54,31 @@ void	ft_update_mouvement(t_data *g, t_xy *begin, t_xy init)
 
 void	ft_update_position(t_data *g, int key, t_xy *b)
 {
-	t_xy	i;
-
-	i.col = g->xy_data.begin.col;
-	i.row = g->xy_data.begin.row;
-	printf("position initial %d et %d\n", key, i.row);
-	if (key == 97 || key == 65362)
-		if (g->map[b->row - 1][g->xy_data.begin.col] != '1')
-			b->row -= 1;
-	if (key == 100 || key == 65363)
-		if (g->map[b->row][b->col + 1] != '1')
-			b->col += 1;
-	if (key == 115 || key == 65364)
-		if (g->map[b->row + 1][b->col] != '1')
-			b->row += 1;
-	if (key == 119 || key == 65361)
+	t_xy i;
+	
+	i.row = b->row;
+	i.col = b->col;
+	printf("position initial %d et %d\n", key, b->row);
+	if (key == XK_a || key == XK_Left)
 		if (g->map[b->row][b->col - 1] != '1')
 			b->col -= 1;
-	if (i.row != b->col || i.row != b->row)
+	if (key == XK_s || key == XK_Down)
+		if (g->map[b->row + 1][b->col] != '1')
+			b->row += 1;
+	if (key == XK_d || key == XK_Right)
+		if (g->map[b->row][b->col + 1] != '1')
+			b->col += 1;
+	if (key == XK_w || key == XK_Up)
+		if (g->map[b->row - 1][b->col] != '1')
+			b->row -= 1;
+	if (i.row != b->row || i.col != b->col)
 	{
-		g->map[i.row][i.row] = ' ';
+		//g->map[i.row][i.row] = ' ';
 		ft_update_mouvement(g, b, i);
-		printf("d,impression d'image\n");
+		//printf("d,impression d'image\n");
 	}
-	else
-		printf("pas d,impression d'image\n");
+	//else
+		//printf("pas d,impression d'image\n");
 }
 
 void	ft_keycode_counter_handler(t_data *data, int keycode)
@@ -100,25 +101,12 @@ int	manage_keyboard(int keycode, t_data *data)
 	// 	exit_game(data);
 	return (0);
 }
-void	exit_game2(t_data **d)
-{
 
-	t_data *data = *d;
-	printf("clean memory...\n");
-	//mlx_destroy_image(data->mlx, data->img->img);
-	//mlx_destroy_window(data->mlx, data->window);
-	//mlx_destroy_display(data->mlx);
-	//ft_free_memory(data);
-	(void)data;
-	printf("END GAME\n");
-	exit (0);
-}
 
 int close_windows(int keycode, t_data *data)
 {
     printf("voici le keycode %d\n", keycode);
 	(void)data;
 	
-	exit_game2(&data);
     return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 11:48:27 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 15:14:59 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <fcntl.h>
 # include <math.h>
 #include <assert.h>
-
+# include <X11/keysym.h>
 
 
 #define MLX_SYNC_IMAGE_WRITABLE		1
