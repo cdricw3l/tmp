@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:18:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 21:08:07 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 04:57:08 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void *ft_clean_arr(char **arr, int i)
 
 	j = 0;
 	while (j < i)
-		free(arr[i++]);
+		free(arr[j++]);
 	free(arr);
 	return(NULL);
 }
@@ -29,7 +29,6 @@ static	char **ft_tmp_arr(char **arr, t_xy map)
 	char **tmp;
 	int height;
 	int i;
-	
 	height = map.row;
 	i = 0;
 	tmp = malloc(sizeof(char *) * height);
@@ -88,6 +87,7 @@ int	check_valide_way(t_data *data)
 	if(!tmp)
 		return(1);
 	fill_arr(tmp,  data, begin.col, begin.row);
+	ft_clean_arr(tmp, data->xy_data.map.row);
 	if (data->check_item != data->count_item)
 		return(1);
 	if (data->count_exit != 0)
