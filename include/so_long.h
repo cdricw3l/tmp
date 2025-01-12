@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 15:14:59 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 17:40:31 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ enum Dimention_message
     P_SCREEN = 4,
 };
 
+typedef void* image;
+
 typedef struct s_xy
 {
 	int row;
@@ -98,8 +100,9 @@ typedef struct s_data
 	int					count_begin;
 	int					count_exit;
 	int					count_mouvement;
-	t_xy_data			xy_data;
 	t_img				**img_set_global;
+	t_xy_data			xy_data;
+	t_img				image;
 	int					state_game;
 	
 } t_data ;

@@ -1,77 +1,115 @@
-==576372== Memcheck, a memory error detector
-==576372== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==576372== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==576372== Command: ./so_long_test map/map2.ber
-==576372== Parent PID: 576371
-==576372== 
-==576372== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==576372==    at 0x4AF0864: writev (writev.c:26)
-==576372==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x112EA5: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
-==576372==    by 0x112BE5: mlx_new_window (in /home/cb/so_long/so_long_test)
-==576372==    by 0x11265B: start_game (main.c:31)
-==576372==    by 0x112765: main (main.c:55)
-==576372==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
-==576372==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==576372==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x112996: mlx_init (in /home/cb/so_long/so_long_test)
-==576372==    by 0x110C0B: data_initialisation (1_init.c:45)
-==576372==    by 0x110CD5: initialisation_and_check (1_init.c:64)
-==576372==    by 0x112739: main (main.c:51)
-==576372==  Uninitialised value was created by a stack allocation
-==576372==    at 0x112DB0: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
-==576372== 
-==576372== 
-==576372== Process terminating with default action of signal 2 (SIGINT)
-==576372==    at 0x4AE2494: poll (poll.c:29)
-==576372==    by 0x4BE78C9: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x4BE928B: xcb_wait_for_event (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x48D0257: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x48B94A7: XNextEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x112CBA: mlx_loop (in /home/cb/so_long/so_long_test)
-==576372==    by 0x1126ED: start_game (main.c:39)
-==576372==    by 0x112765: main (main.c:55)
-==576372== 
-==576372== HEAP SUMMARY:
-==576372==     in use at exit: 94,868 bytes in 141 blocks
-==576372==   total heap usage: 14,911 allocs, 14,770 frees, 2,058,642 bytes allocated
-==576372== 
-==576372== LEAK SUMMARY:
-==576372==    definitely lost: 0 bytes in 0 blocks
-==576372==    indirectly lost: 0 bytes in 0 blocks
-==576372==      possibly lost: 0 bytes in 0 blocks
-==576372==    still reachable: 94,868 bytes in 141 blocks
-==576372==         suppressed: 0 bytes in 0 blocks
-==576372== Rerun with --leak-check=full to see details of leaked memory
-==576372== 
-==576372== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==576372== 
-==576372== 1 errors in context 1 of 1:
-==576372== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==576372==    at 0x4AF0864: writev (writev.c:26)
-==576372==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==576372==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x112EA5: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
-==576372==    by 0x112BE5: mlx_new_window (in /home/cb/so_long/so_long_test)
-==576372==    by 0x11265B: start_game (main.c:31)
-==576372==    by 0x112765: main (main.c:55)
-==576372==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
-==576372==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==576372==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==576372==    by 0x112996: mlx_init (in /home/cb/so_long/so_long_test)
-==576372==    by 0x110C0B: data_initialisation (1_init.c:45)
-==576372==    by 0x110CD5: initialisation_and_check (1_init.c:64)
-==576372==    by 0x112739: main (main.c:51)
-==576372==  Uninitialised value was created by a stack allocation
-==576372==    at 0x112DB0: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
-==576372== 
-==576372== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==581436== Memcheck, a memory error detector
+==581436== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==581436== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==581436== Command: ./so_long_test map/map2.ber
+==581436== Parent PID: 581435
+==581436== 
+==581436== Conditional jump or move depends on uninitialised value(s)
+==581436==    at 0x48467D1: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x11150B: ft_tmp_arr (4_check_valide_way.c:33)
+==581436==    by 0x11181B: check_valide_way (4_check_valide_way.c:85)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Uninitialised value was created by a heap allocation
+==581436==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x110BE6: data_initialisation (1_init.c:42)
+==581436==    by 0x110CD5: initialisation_and_check (1_init.c:64)
+==581436==    by 0x112686: main (main.c:52)
+==581436== 
+==581436== Conditional jump or move depends on uninitialised value(s)
+==581436==    at 0x11158F: ft_tmp_arr (4_check_valide_way.c:36)
+==581436==    by 0x11181B: check_valide_way (4_check_valide_way.c:85)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Uninitialised value was created by a heap allocation
+==581436==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x110BE6: data_initialisation (1_init.c:42)
+==581436==    by 0x110CD5: initialisation_and_check (1_init.c:64)
+==581436==    by 0x112686: main (main.c:52)
+==581436== 
+==581436== Invalid read of size 8
+==581436==    at 0x1115D5: fill_arr (4_check_valide_way.c:51)
+==581436==    by 0x111843: check_valide_way (4_check_valide_way.c:88)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Address 0x4f15ab8 is 8 bytes inside an unallocated block of size 1,201,456 in arena "client"
+==581436== 
+==581436== Invalid read of size 1
+==581436==    at 0x1115E0: fill_arr (4_check_valide_way.c:51)
+==581436==    by 0x111843: check_valide_way (4_check_valide_way.c:88)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Address 0x15 is not stack'd, malloc'd or (recently) free'd
+==581436== 
+==581436== 
+==581436== Process terminating with default action of signal 11 (SIGSEGV)
+==581436==  Access not within mapped region at address 0x15
+==581436==    at 0x1115E0: fill_arr (4_check_valide_way.c:51)
+==581436==    by 0x111843: check_valide_way (4_check_valide_way.c:88)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  If you believe this happened as a result of a stack
+==581436==  overflow in your program's main thread (unlikely but
+==581436==  possible), you can try to increase the size of the
+==581436==  main thread stack using the --main-stacksize= flag.
+==581436==  The main thread stack size used in this run was 8388608.
+==581436== 
+==581436== HEAP SUMMARY:
+==581436==     in use at exit: 70,712 bytes in 85 blocks
+==581436==   total heap usage: 14,043 allocs, 13,958 frees, 1,982,152 bytes allocated
+==581436== 
+==581436== LEAK SUMMARY:
+==581436==    definitely lost: 56 bytes in 1 blocks
+==581436==    indirectly lost: 1,692 bytes in 24 blocks
+==581436==      possibly lost: 0 bytes in 0 blocks
+==581436==    still reachable: 68,964 bytes in 60 blocks
+==581436==         suppressed: 0 bytes in 0 blocks
+==581436== Rerun with --leak-check=full to see details of leaked memory
+==581436== 
+==581436== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==581436== 
+==581436== 1 errors in context 1 of 4:
+==581436== Invalid read of size 1
+==581436==    at 0x1115E0: fill_arr (4_check_valide_way.c:51)
+==581436==    by 0x111843: check_valide_way (4_check_valide_way.c:88)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Address 0x15 is not stack'd, malloc'd or (recently) free'd
+==581436== 
+==581436== 
+==581436== 1 errors in context 2 of 4:
+==581436== Invalid read of size 8
+==581436==    at 0x1115D5: fill_arr (4_check_valide_way.c:51)
+==581436==    by 0x111843: check_valide_way (4_check_valide_way.c:88)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Address 0x4f15ab8 is 8 bytes inside an unallocated block of size 1,201,456 in arena "client"
+==581436== 
+==581436== 
+==581436== 1 errors in context 3 of 4:
+==581436== Conditional jump or move depends on uninitialised value(s)
+==581436==    at 0x11158F: ft_tmp_arr (4_check_valide_way.c:36)
+==581436==    by 0x11181B: check_valide_way (4_check_valide_way.c:85)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Uninitialised value was created by a heap allocation
+==581436==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x110BE6: data_initialisation (1_init.c:42)
+==581436==    by 0x110CD5: initialisation_and_check (1_init.c:64)
+==581436==    by 0x112686: main (main.c:52)
+==581436== 
+==581436== 
+==581436== 1 errors in context 4 of 4:
+==581436== Conditional jump or move depends on uninitialised value(s)
+==581436==    at 0x48467D1: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x11150B: ft_tmp_arr (4_check_valide_way.c:33)
+==581436==    by 0x11181B: check_valide_way (4_check_valide_way.c:85)
+==581436==    by 0x110D8A: initialisation_and_check (1_init.c:75)
+==581436==    by 0x112686: main (main.c:52)
+==581436==  Uninitialised value was created by a heap allocation
+==581436==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==581436==    by 0x110BE6: data_initialisation (1_init.c:42)
+==581436==    by 0x110CD5: initialisation_and_check (1_init.c:64)
+==581436==    by 0x112686: main (main.c:52)
+==581436== 
+==581436== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_check_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouhadr <cbouhadr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 08:43:22 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 03:50:07 by cbouhadr         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:53:00 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_dimentions(t_data *data)
 		return (ERR_NOTCLOSE);
 	data->xy_data.map.col = j;
 	data->xy_data.map.row = row;
-
+	printf("voici les dimentiond %d", data->xy_data.map.row);
 	return (0);
 }
 

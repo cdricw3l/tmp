@@ -27,6 +27,7 @@ void    start_game(t_data *data)
 
 	win.col = data->xy_data.map.col;
 	win.row = data->xy_data.map.row;
+	printf("start drawer %d\n", data->xy_data.map.col);
 
 	data->window = mlx_new_window(data->mlx,win.col * TILD_SIZE, win.row * TILD_SIZE, "hello");
     if(!data->window || !data->mlx)

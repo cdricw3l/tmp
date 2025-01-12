@@ -29,7 +29,7 @@ int		ft_get_img_idx(t_data *data,char c)
 	return(6);
 }
 
-void	my_mlx_pixel_put(t_img *dst, t_img *src,t_xy xyf)
+void	my_mlx_pixel_put(t_img *dst, t_img *new,t_xy xyf)
 {
 	char	*d;
 	char	*s;
@@ -42,11 +42,8 @@ void	my_mlx_pixel_put(t_img *dst, t_img *src,t_xy xyf)
         j = 0;
         while (j < TILD_SIZE)
         {
-            s = src->addr + (j * src->line_length + i 
-                    * (src->bit_per_pixel / 8));
-            d = dst->addr + ((j + (xyf.row)) 
-                    * dst->line_length + (i + (xyf.col)) 
-                    * (dst->bit_per_pixel / 8));
+            s = new->addr + (j * new->line_length + i * (new->bit_per_pixel / 8));
+            d = dst->addr + ((j + (xyf.row)) * dst->line_length + (i + (xyf.col)) * (dst->bit_per_pixel / 8));
 	        *(unsigned int*)d = *(unsigned int*)s;
             j++;
         }
@@ -54,24 +51,6 @@ void	my_mlx_pixel_put(t_img *dst, t_img *src,t_xy xyf)
     }
 }
 
-int ft_draw_hero(t_data *data, t_xy init, t_img *new)
-{
-
-    int row;
-    int col;
-
-    col = init.col;
-    row = init.row;
-    t_xy draw_area = {0,0};
-	int path = ft_get_img_idx(data,data->map[row][col]);
-    
-	if(path >= 0 && path < 6)
-	    my_mlx_pixel_put(new, data->img_set_global[path], draw_area);
-    printf("impression du hero ok %d et %d \n", col, row);
-    //path = ft_get_img_idx(data,data->map[data->xy_data.begin.row][data->xy_data.begin.col]);
-    mlx_put_image_to_window(data->mlx,data->window,new->img, 1000, row);
-    return(0);
-}
 t_img *initial_draw(t_data *data)
 {
 	t_img new;
@@ -82,6 +61,7 @@ t_img *initial_draw(t_data *data)
 	(void)draw_area;
 	i = 0;
 	size = data->xy_data.map;
+
     new.img = mlx_new_image(data->mlx, (size.col * TILD_SIZE), (size.row * TILD_SIZE) );
     if(!new.img)
         return(NULL);
