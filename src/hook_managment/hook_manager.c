@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 16:22:32 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 16:48:22 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ft_update_mouvement(t_data *g, t_xy *begin, t_xy init)
 			// 	exit_game(data);
 		g->map[begin->row][begin->col] = 'P';
 		g->map[init.row][init.col] = ' ';
-		ft_image_drawer(g);
 	}
+	ft_image_drawer(g);
 	print_map(g);
 }
 
@@ -72,16 +72,23 @@ void	ft_update_position(t_data *g, int key, t_xy *b)
 		if (g->map[b->row - 1][b->col] != '1')
 			b->row -= 1;
 	if (i.row != b->row || i.col != b->col)
-	{
-		//g->map[i.row][i.row] = ' ';
 		ft_update_mouvement(g, b, i);
-		//printf("d,impression d'image\n");
-	}
-	//else
-		//printf("pas d,impression d'image\n");
 }
 
-void	ft_keycode_counter_handler(t_data *data, int keycode)
+// void	ft_keycode_counter_handler(t_data *data, int keycode)
+// {
+// 	t_xy	*begin;
+
+// 	begin = &data->xy_data.begin;
+// 	if (keycode == 65363)
+// 		data->char_state = RIGHT;
+// 	if (keycode == 65361)
+// 		data->char_state = LEFT;
+// 	if(!ft_is_keycode_in_set(keycode))
+// 		ft_update_position(data, keycode, begin);
+// }
+
+int	manage_keyboard(int keycode, t_data *data)
 {
 	t_xy	*begin;
 
@@ -92,11 +99,7 @@ void	ft_keycode_counter_handler(t_data *data, int keycode)
 		data->char_state = LEFT;
 	if(!ft_is_keycode_in_set(keycode))
 		ft_update_position(data, keycode, begin);
-}
 
-int	manage_keyboard(int keycode, t_data *data)
-{
-	ft_keycode_counter_handler(data, keycode);
 	// if (keycode == 65307 || keycode == 64)
 	// 	exit_game(data);
 	return (0);
