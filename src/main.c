@@ -26,7 +26,8 @@ void	my_mlx_pixel_put(t_img *new, t_img *frame,t_xy xyf)
         {
             printf("ECRITURE colors \n");
             src = frame->addr + (j * frame->line_length + i * (frame->bit_per_pixel / 8));
-            dst = new->addr + (j * new->line_length + i * (new->bit_per_pixel / 8));
+            printf("voici la line len %d\n", new->line_length);
+            dst = new->addr + ((j + (1080-128)) * new->line_length + (i + (1920-128)) * (new->bit_per_pixel / 8));
 	        *(unsigned int*)dst = *(unsigned int*)src;
             j++;
         }
