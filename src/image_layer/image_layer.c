@@ -11,57 +11,104 @@
 // /* ************************************************************************** */
 
 
-// #include "../../include/image_layer.h"
+#include "../../include/image_layer.h"
 
-// t_img *get_image_in_set(t_data *data, char c, int state)
-// {
+int		ft_get_img_idx(t_data *data,char c)
+{
+	if(c == '1')
+		return(5);
+	if(c == 'X')
+		return(4);
+	if(c == 'P' && data->char_state == LEFT)
+		return(0);
+	if(c == 'P' && data->char_state == RIGHT)
+		return(1);
+	if(c == 'E')
+		return(2);
+	return(6);
+}
 
-//     printf("voicis %c\n", data->map[data->xy_data.begin.col][data->xy_data.begin.row]);
+void	my_mlx_pixel_put(t_img *new, t_img *frame,t_xy xyf)
+{
+	char	*dst;
+	char	*src;
+    int i;
+
+    i = 0;
+    while (i < TILD_SIZE)
+    {
+        int j = 0;
+        while (j < TILD_SIZE)
+        {
+            //printf("ECRITURE colors  col %d et row %d\n", frame->line_length, xyf.row);
+            src = frame->addr + (j * frame->line_length + i * (frame->bit_per_pixel / 8));
+            dst = new->addr + ((j + (xyf.row)) * new->line_length + (i + (xyf.col)) * (new->bit_per_pixel / 8));
+	        *(unsigned int*)dst = *(unsigned int*)src;
+            j++;
+        }
+        i++;
+    }
+	
+}
+
+int ft_draw_hero(t_data *data, t_xy init, t_img *new)
+{
+
+    int row;
+    int col;
+
+    col = init.col;
+    row = init.row;
+    t_xy draw_area = {0,0};
+	int path = ft_get_img_idx(data,data->map[row][col]);
     
-//     if(c == '0')
-//         return (data->img_set[0]);
-//     if(c == '1')
-//         return (data->img_set[1]);
-//     if(c == 'P')
-//     {
-//         printf("state : %d\n",data->char_state);
-//         printf("state : %d\n",state);
-//         if(state == 1)
-//             return(data->img_set[2]);
-//         else
-//             return(data->img_set[3]);
-//     }
-//     if(c == 'C')
-//         return (data->img_set[4]);
-//     if(c == 'E')
-//         return (data->img_set[5]);
-//     else
-//         return(NULL);
+	if(path >= 0 && path < 6)
+	    my_mlx_pixel_put(new, data->img_set_global[path], draw_area);
+    printf("impression du hero ok %d et %d \n", col, row);
+    //path = ft_get_img_idx(data,data->map[data->xy_data.begin.row][data->xy_data.begin.col]);
+    mlx_put_image_to_window(data->mlx,data->window,new->img, 1000, row);
+    return(0);
+}
+t_img *initial_draw(t_data *data)
+{
+	t_img new;
+	int i;
+	int j;
+	t_xy	draw_area;
+	t_xy	size;
+	(void)draw_area;
+	i = 0;
+	size = data->xy_data.map;
+	print_dimention(data->xy_data, P_MAP);
+	new.img = mlx_new_image(data->mlx, TILD_SIZE * data->xy_data.map.col, TILD_SIZE * data->xy_data.map.row);
+	if(!new.img)
+		return(NULL);
+	new.addr = mlx_get_data_addr(new.img,&new.bit_per_pixel, &new.line_length, &new.endian);
+	if(!new.addr)
+		return(NULL);
+	while (i < size.row)
+	{
+		j = 0;
+		while (j <  size.col)
+		{
+			draw_area.col = j * TILD_SIZE;
+			draw_area.row = i *  TILD_SIZE;
+			int path = ft_get_img_idx(data,data->map[i][j]);
+			if(path >= 0 && path < 6)
+				my_mlx_pixel_put(&new, data->img_set_global[path], draw_area);
+			j++;
+		}
+		i++;	
+	}
+	mlx_put_image_to_window(data->mlx,  data->window, new.img,0,0);
+    data->state_game = 1;
+	return(NULL);
 
-// }
+}
 
-// int    run_image_layer(t_data *d)
-// {
-//     t_img   *tpm;
-//     //int     *addr;
-//     char    **map;
-//     t_data *data = d;
+t_img *ft_image_drawer(t_data *data)
+{
 
-//     map = data->map; 
-//     print_dimention(data->xy_data, 'b');
-//     print_map(data);
-//     printf("%d\n", map[data->xy_data.begin.col][data->xy_data.begin.row]);
-//     tpm = get_image_in_set(data, map[data->xy_data.begin.col][data->xy_data.begin.row], data->char_state);
-//     if(!tpm)
-//         return(ERR_FRAME);
-//     mlx_put_image_to_window(data->mlx,data->window,tpm->img,data->xy_data.begin.col * TILD_SIZE,data->xy_data.begin.row *  TILD_SIZE);
-//     //addr = (int *)mlx_get_data_addr(tpm ,&tpm->bit_per_pixel,&tpm->line_length,&tpm->endian);
-   
-//     // if(!addr)
-//     //     return(ERR_FRAME);
-//     printf("start %d et %d \n", tpm->line_length, tpm->endian);
-    
-//     return(0);
-
-// }
-
+    initial_draw(data);
+    return(NULL);
+}

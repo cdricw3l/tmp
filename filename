@@ -1,77 +1,67 @@
-==527443== Memcheck, a memory error detector
-==527443== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==527443== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==527443== Command: ./so_long_test map/map2.ber
-==527443== Parent PID: 527442
-==527443== 
-==527443== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==527443==    at 0x4AF0864: writev (writev.c:26)
-==527443==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x112EC5: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
-==527443==    by 0x112C05: mlx_new_window (in /home/cb/so_long/so_long_test)
-==527443==    by 0x11266F: start_game (main.c:104)
-==527443==    by 0x112779: main (main.c:128)
-==527443==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
-==527443==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==527443==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x1129B6: mlx_init (in /home/cb/so_long/so_long_test)
-==527443==    by 0x110CFF: data_initialisation (1_init.c:45)
-==527443==    by 0x110DC9: initialisation_and_check (1_init.c:64)
-==527443==    by 0x11274D: main (main.c:124)
-==527443==  Uninitialised value was created by a stack allocation
-==527443==    at 0x112DD0: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
-==527443== 
-==527443== 
-==527443== Process terminating with default action of signal 2 (SIGINT)
-==527443==    at 0x4AE2494: poll (poll.c:29)
-==527443==    by 0x4BE78C9: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x4BE928B: xcb_wait_for_event (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x48D0257: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x48B94A7: XNextEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x112CDA: mlx_loop (in /home/cb/so_long/so_long_test)
-==527443==    by 0x112701: start_game (main.c:112)
-==527443==    by 0x112779: main (main.c:128)
-==527443== 
-==527443== HEAP SUMMARY:
-==527443==     in use at exit: 98,292 bytes in 199 blocks
-==527443==   total heap usage: 14,426 allocs, 14,227 frees, 2,032,050 bytes allocated
-==527443== 
-==527443== LEAK SUMMARY:
-==527443==    definitely lost: 2,552 bytes in 29 blocks
-==527443==    indirectly lost: 3,944 bytes in 29 blocks
-==527443==      possibly lost: 0 bytes in 0 blocks
-==527443==    still reachable: 91,796 bytes in 141 blocks
-==527443==         suppressed: 0 bytes in 0 blocks
-==527443== Rerun with --leak-check=full to see details of leaked memory
-==527443== 
-==527443== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==527443== 
-==527443== 1 errors in context 1 of 1:
-==527443== Syscall param writev(vector[0]) points to uninitialised byte(s)
-==527443==    at 0x4AF0864: writev (writev.c:26)
-==527443==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
-==527443==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x112EC5: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
-==527443==    by 0x112C05: mlx_new_window (in /home/cb/so_long/so_long_test)
-==527443==    by 0x11266F: start_game (main.c:104)
-==527443==    by 0x112779: main (main.c:128)
-==527443==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
-==527443==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==527443==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
-==527443==    by 0x1129B6: mlx_init (in /home/cb/so_long/so_long_test)
-==527443==    by 0x110CFF: data_initialisation (1_init.c:45)
-==527443==    by 0x110DC9: initialisation_and_check (1_init.c:64)
-==527443==    by 0x11274D: main (main.c:124)
-==527443==  Uninitialised value was created by a stack allocation
-==527443==    at 0x112DD0: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
-==527443== 
-==527443== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==546308== Memcheck, a memory error detector
+==546308== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==546308== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==546308== Command: ./so_long_test map/map2.ber
+==546308== Parent PID: 546307
+==546308== 
+==546308== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==546308==    at 0x4AF0864: writev (writev.c:26)
+==546308==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x112F75: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
+==546308==    by 0x112CB5: mlx_new_window (in /home/cb/so_long/so_long_test)
+==546308==    by 0x112734: start_game (main.c:26)
+==546308==    by 0x11283E: main (main.c:50)
+==546308==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
+==546308==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==546308==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x112A66: mlx_init (in /home/cb/so_long/so_long_test)
+==546308==    by 0x110CC3: data_initialisation (1_init.c:45)
+==546308==    by 0x110D8D: initialisation_and_check (1_init.c:64)
+==546308==    by 0x112812: main (main.c:46)
+==546308==  Uninitialised value was created by a stack allocation
+==546308==    at 0x112E80: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
+==546308== 
+==546308== 
+==546308== HEAP SUMMARY:
+==546308==     in use at exit: 110,812 bytes in 317 blocks
+==546308==   total heap usage: 14,995 allocs, 14,678 frees, 2,056,970 bytes allocated
+==546308== 
+==546308== LEAK SUMMARY:
+==546308==    definitely lost: 7,920 bytes in 90 blocks
+==546308==    indirectly lost: 12,240 bytes in 90 blocks
+==546308==      possibly lost: 0 bytes in 0 blocks
+==546308==    still reachable: 90,652 bytes in 137 blocks
+==546308==         suppressed: 0 bytes in 0 blocks
+==546308== Rerun with --leak-check=full to see details of leaked memory
+==546308== 
+==546308== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==546308== 
+==546308== 1 errors in context 1 of 1:
+==546308== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==546308==    at 0x4AF0864: writev (writev.c:26)
+==546308==    by 0x4BE7ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x4BE7C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x4BE8D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==546308==    by 0x48CB0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x48D0148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x48D052B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x112F75: mlx_int_wait_first_expose (in /home/cb/so_long/so_long_test)
+==546308==    by 0x112CB5: mlx_new_window (in /home/cb/so_long/so_long_test)
+==546308==    by 0x112734: start_game (main.c:26)
+==546308==    by 0x11283E: main (main.c:50)
+==546308==  Address 0x4c4519c is 28 bytes inside a block of size 16,384 alloc'd
+==546308==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==546308==    by 0x48BA42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==546308==    by 0x112A66: mlx_init (in /home/cb/so_long/so_long_test)
+==546308==    by 0x110CC3: data_initialisation (1_init.c:45)
+==546308==    by 0x110D8D: initialisation_and_check (1_init.c:64)
+==546308==    by 0x112812: main (main.c:46)
+==546308==  Uninitialised value was created by a stack allocation
+==546308==    at 0x112E80: mlx_int_anti_resize_win (in /home/cb/so_long/so_long_test)
+==546308== 
+==546308== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

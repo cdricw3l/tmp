@@ -6,12 +6,11 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:18:35 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 04:57:08 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 13:38:42 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/initialisation.h"
-
 
 static void *ft_clean_arr(char **arr, int i)
 {
@@ -58,10 +57,11 @@ void	fill_arr(char **tab, t_data *data, int col, int row)
 		data->map[row][col] = 'X';
 	}
 	if(tab[row][col] == 'E')
+	{
 		data->count_exit--;
-	
+		data->map[row][col] = '0';
+	}
 	tab[row][col] = ' ';
-	
 	if(row > 1)
 		fill_arr(tab, data, col, row - 1);
 	if(row < size.row - 1)
@@ -83,7 +83,6 @@ int	check_valide_way(t_data *data)
 	tab = data->map;
 	begin = data->xy_data.begin;
 	tmp = ft_tmp_arr(tab, data->xy_data.map);
-	printf("tableau copier avec succes \n");
 	if(!tmp)
 		return(1);
 	fill_arr(tmp,  data, begin.col, begin.row);

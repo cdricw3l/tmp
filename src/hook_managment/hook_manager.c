@@ -6,26 +6,38 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/12 10:53:48 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 13:48:59 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/hook_managment.h"
 
-void	ft_update_mouvement(t_data *data, t_data *g, t_xy *begin)
+int ft_is_keycode_in_set(int keycode)
 {
-	(void)data;
+	if (keycode == 97 
+			||keycode == 100
+			|| keycode == 115
+			|| keycode == 119
+			|| keycode == 65361 
+			|| keycode == 65362
+			|| keycode == 65363
+			|| keycode == 65364)
+		return(0);
+	return(1);
+}
+
+void	ft_update_mouvement(t_data *g, t_xy *begin, t_xy init)
+{
 	g->count_mouvement++;
 	if (g->map[begin->row][begin->col] == 'X')
 	{
 		g->count_item--;
-		printf("voici le nbr d'item restant %d\n", g->count_item);
 		if (g->count_item == 0)
 		{
 			g->map[g->xy_data.exit.row][g->xy_data.exit.row] = 'E';
-			printf("You can use the exit\n");
 		}
 		g->map[begin->row][begin->col] = 'P';
+		g->map[init.row][init.col] = ' ';
 	}
 	else
 	{
@@ -33,20 +45,20 @@ void	ft_update_mouvement(t_data *data, t_data *g, t_xy *begin)
 			// if(g->count_item == 0)
 			// 	exit_game(data);
 		g->map[begin->row][begin->col] = 'P';
-		printf("Update position : y: %d, x: %d\n", begin->row, begin->col);
-		printf("Nombre de mouvement %d\n", g->count_mouvement);
-		ft_image_drawer(data);
+		g->map[init.row][init.col] = ' ';
+		ft_image_drawer(g);
 	}
+	print_map(g);
 }
 
-void	ft_update_position(t_data *d, t_data *g, int key, t_xy *b)
+void	ft_update_position(t_data *g, int key, t_xy *b)
 {
-	int	init_col;
-	int	init_row;
+	t_xy	i;
 
-	init_col = b->col;
-	init_row = b->row;
-	if (key == 100 || key == 65362)
+	i.col = g->xy_data.begin.col;
+	i.row = g->xy_data.begin.row;
+	printf("position initial %d et %d\n", key, i.row);
+	if (key == 97 || key == 65362)
 		if (g->map[b->row - 1][g->xy_data.begin.col] != '1')
 			b->row -= 1;
 	if (key == 100 || key == 65363)
@@ -58,14 +70,14 @@ void	ft_update_position(t_data *d, t_data *g, int key, t_xy *b)
 	if (key == 119 || key == 65361)
 		if (g->map[b->row][b->col - 1] != '1')
 			b->col -= 1;
-	if (init_col != b->col || init_row != b->row)
+	if (i.row != b->col || i.row != b->row)
 	{
-		g->map[init_row][init_col] = ' ';
-		ft_update_mouvement(d, g, b);
+		g->map[i.row][i.row] = ' ';
+		ft_update_mouvement(g, b, i);
+		printf("d,impression d'image\n");
 	}
 	else
-		printf("Le personage ne bouge pas:\ny: %d, x: %d\n", b->row, b->col);
-	print_map(g);
+		printf("pas d,impression d'image\n");
 }
 
 void	ft_keycode_counter_handler(t_data *data, int keycode)
@@ -77,14 +89,8 @@ void	ft_keycode_counter_handler(t_data *data, int keycode)
 		data->char_state = RIGHT;
 	if (keycode == 65361)
 		data->char_state = LEFT;
-	if (keycode == 97 || keycode == 100)
-		ft_update_position(data, data, keycode, begin);
-	if (keycode == 115 || keycode == 119)
-		ft_update_position(data, data, keycode, begin);
-	if (keycode == 65361 || keycode == 65362)
-		ft_update_position(data, data, keycode, begin);
-	if (keycode == 65363 || keycode == 65364)
-		ft_update_position(data, data, keycode, begin);
+	if(!ft_is_keycode_in_set(keycode))
+		ft_update_position(data, keycode, begin);
 }
 
 int	manage_keyboard(int keycode, t_data *data)

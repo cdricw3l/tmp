@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:07:49 by cb                #+#    #+#             */
-/*   Updated: 2025/01/12 04:33:45 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 11:17:09 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	clean_image_memory(t_data **d, t_img **data, int index)
 	
     while (i < SET_SIZE)
 	{   
-        printf("MEMORYYYYYYYY\n");
         if((*d)->mlx)
             mlx_destroy_image((*d)->mlx,data[i]->img);
         else
