@@ -1,5 +1,5 @@
 CC = gcc 
-GFLAGS= -Werror -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -I./include -g
+GFLAGS= -Werror -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-but-set-variable -I./include -g
 
 NAME= so_long
 NAME_TEST= so_long_test

@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 14:40:51 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 18:41:47 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 10:34:45 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_xy	ft_s_dimention(void);
 void	print_map(t_data *data);
 void 	print_path(char **path_g);
 void	ft_slice_img(t_img *img);
-
+t_img 	*ft_image_drawer(t_data *data);
 // void	ft_process_set(t_data *data,char c, int row, int col);
 // void    ft_print_map(t_data *data);
 // void	end_game_menu(t_data *data);

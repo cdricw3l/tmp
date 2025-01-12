@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:59:18 by cbouhadr          #+#    #+#             */
-/*   Updated: 2025/01/11 21:10:29 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 10:53:48 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_update_mouvement(t_data *data, t_data *g, t_xy *begin)
 		g->map[begin->row][begin->col] = 'P';
 		printf("Update position : y: %d, x: %d\n", begin->row, begin->col);
 		printf("Nombre de mouvement %d\n", g->count_mouvement);
+		ft_image_drawer(data);
 	}
 }
 
@@ -72,7 +73,10 @@ void	ft_keycode_counter_handler(t_data *data, int keycode)
 	t_xy	*begin;
 
 	begin = &data->xy_data.begin;
-	printf("voici le keycode %d\n", keycode);
+	if (keycode == 65363)
+		data->char_state = RIGHT;
+	if (keycode == 65361)
+		data->char_state = LEFT;
 	if (keycode == 97 || keycode == 100)
 		ft_update_position(data, data, keycode, begin);
 	if (keycode == 115 || keycode == 119)
