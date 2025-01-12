@@ -279,3 +279,4 @@ le code d'erreur n'est pas dans le scope
 [ err ] Un element de la map ne fait pas parti du set
 [ err ] probleme d'initialisation de la structure data
 [ err ] Pas de chemin valide
+[ err ] Aucune map passée en paramètre

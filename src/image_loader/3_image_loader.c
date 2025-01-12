@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 18:23:15 by cb                #+#    #+#             */
-/*   Updated: 2025/01/12 05:46:07 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 10:10:26 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	push_img_set(t_data *data, t_img **img_set, char **path)
 		if(!img_set[i]->class)
 			return(clean_img_set(img_set, i));
 		assert(ft_atoi(img_set[i]->class) - 1 == i);
-		img_set[i]->addr = mlx_get_data_addr(img_set[i], &img_set[i]->bit_per_pixel, &img_set[i]->line_length, &img_set[i]->endian);
+		img_set[i]->addr = mlx_get_data_addr(img_set[i]->img, &img_set[i]->bit_per_pixel, &img_set[i]->line_length, &img_set[i]->endian);
 		if(!img_set[i]->addr)
 			return(clean_img_set(img_set, i));
 		i++;

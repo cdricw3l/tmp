@@ -6,7 +6,7 @@
 /*   By: cb <cb@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 23:56:59 by cb                #+#    #+#             */
-/*   Updated: 2025/01/11 18:13:29 by cb               ###   ########.fr       */
+/*   Updated: 2025/01/12 09:27:40 by cb               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_images_sets(t_data *data)
 	data->img_set_global = malloc(sizeof(t_img *) * (SET_SIZE + 1)) ;
 	if(!data->img_set_global)
 		return(error_layer(ERR_GET_IMGPATH));
-	path_g = get_paths(1);
+	path_g = get_paths();
 	
 	if (!path_g)
 	{
